@@ -62,7 +62,12 @@
 
   body {
     @apply bg-[#000510] text-white;
-    font-family: 'DM Sans', -apple-system, Roboto, Helvetica, sans-serif;
+    font-family:
+      "DM Sans",
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
   }
 
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
