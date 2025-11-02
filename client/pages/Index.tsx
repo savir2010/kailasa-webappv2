@@ -1,6 +1,63 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { ArrowRight, Plus } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { 
+  ArrowRight, 
+  ChevronLeft, 
+  ChevronRight, 
+  Heart,
+  Link as LinkIcon,
+  Zap as LightningIcon,
+  Settings as SettingsIcon,
+  BarChart as ChartIcon,
+  Shield as ShieldIcon,
+  Smartphone as MobileIcon,
+  Sparkles as RefinementIcon,
+  Wrench as ToolIcon,
+  Layers as LayersIcon,
+  Check as CheckIcon
+} from "lucide-react";
+import { Pie, PieChart, Sector, Cell } from "recharts";
+import { PieSectorDataItem } from "recharts/types/polar/Pie";
+import {
+  ChartConfig,
+  ChartContainer,
+} from "@/components/ui/chart";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+// Typewriter component for multi-line text
+function Typewriter({ lines }: { lines: string[] }) {
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentLineIndex < lines.length) {
+      const currentLine = lines[currentLineIndex];
+      
+      if (currentCharIndex < currentLine.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(prev => prev + currentLine[currentCharIndex]);
+          setCurrentCharIndex(prev => prev + 1);
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else if (currentLineIndex < lines.length - 1) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(prev => prev + '\n');
+          setCurrentLineIndex(prev => prev + 1);
+          setCurrentCharIndex(0);
+        }, 300);
+        return () => clearTimeout(timeout);
+      }
+    }
+  }, [currentLineIndex, currentCharIndex, lines]);
+
+  return (
+    <div className="whitespace-pre-line">
+      {displayedText}
+    </div>
+  );
+}
 
 export default function Index() {
   const [scrollY, setScrollY] = useState(0);
@@ -32,68 +89,35 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-crypto-bg text-white overflow-x-hidden">
+    <div className="min-h-screen bg-crypto-bg text-white overflow-x-hidden relative">
+      {/* Background Image - Scrolls with page */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{ 
+          backgroundImage: 'url(/BG21_2.webp)',
+          backgroundAttachment: 'scroll',
+          backgroundPosition: 'top center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100% auto'
+        }}
+      />
+      <div className="relative z-10">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-crypto-primary-light backdrop-blur-md border-b border-white/10">
-        <div className="max-w-[1300px] mx-auto px-12 py-6 flex justify-between items-center">
-          <div className="flex items-center gap-8">
-            <Logo />
-            <nav className="hidden md:flex items-center gap-8">
-              <a
-                href="#"
-                className="text-white text-base hover:text-crypto-primary transition-colors"
-              >
-                Home
-              </a>
-              <a
-                href="#"
-                className="text-white text-base hover:text-crypto-primary transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#"
-                className="text-white text-base hover:text-crypto-primary transition-colors"
-              >
-                Blogs
-              </a>
-              <a
-                href="#"
-                className="text-white text-base hover:text-crypto-primary transition-colors"
-              >
-                Careers
-              </a>
-              <a
-                href="#"
-                className="text-white text-base hover:text-crypto-primary transition-colors"
-              >
-                Contact Us
-              </a>
-            </nav>
-          </div>
-          <button className="bg-crypto-primary text-crypto-bg px-6 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors">
-            Login
-          </button>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-18 px-12 max-w-[1300px] mx-auto">
-        <div className="flex justify-between items-start gap-12">
+      <section className="relative pt-20 md:pt-32 pb-12 md:pb-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-12">
           <motion.div className="w-full max-w-[588px]" {...fadeInUp}>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-6 md:gap-10">
               <div className="flex flex-col gap-3">
-                <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-white/10 bg-crypto-primary-light text-crypto-primary text-base w-fit">
+                <span className="inline-flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-white/10 bg-crypto-primary-light text-crypto-primary text-sm md:text-base w-fit">
                   Future of crypto trading
                 </span>
-                <h1 className="text-[72px] leading-[120%] font-medium tracking-tight text-white">
-                  Fast and Secure
-                  <br />
-                  Cryptocurrency
-                  <br />
-                  Exchange
+                <h1 className="text-[32px] sm:text-[48px] md:text-[72px] leading-[120%] font-medium tracking-tight text-white">
+                  <Typewriter lines={["Fast and Secure", "Cryptocurrency", "Exchange"]} />
                 </h1>
-                <p className="text-base leading-[140%] text-white">
+                <p className="text-sm md:text-base leading-[140%] text-white">
                   Trade cryptocurrencies with ease, security, and advanced
                   features on our cutting-edge platform.
                 </p>
@@ -112,8 +136,8 @@ export default function Index() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/b70848e70b5f3962cad5e1281b64709b5113dbe5?width=1168"
-              alt="Crypto App"
+              src="/photo_hero.png"
+              alt="Kailasa"
               className="w-[584px] h-[582px] object-contain"
             />
           </motion.div>
@@ -124,37 +148,41 @@ export default function Index() {
       <FeaturedCoins />
 
       {/* Features Section */}
-      <section className="py-18 px-12 max-w-[1300px] mx-auto">
-        <div className="flex gap-6">
+      <section className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-0">
           <motion.div className="w-full max-w-[588px]" {...fadeInUp}>
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-6 md:gap-10">
               <div className="flex flex-col items-center gap-3">
-                <p className="text-base">
-                  Why choose <span className="text-crypto-primary">crypgo</span>
+                <p className="text-base md:text-lg">
                 </p>
-                <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-                  Features of the crypto framer mobile application
+                <h2 className="text-[28px] sm:text-[40px] md:text-[56px] leading-[120%] font-medium tracking-tight text-center md:text-left">
+                  Turn your wishes into reality with Kailasa
                 </h2>
               </div>
 
-              <div className="flex flex-wrap gap-12">
+              <div className="flex flex-wrap gap-6 md:gap-12 justify-center md:justify-start">
                 <Feature
-                  icon={<LinkIcon />}
-                  text="Designed for crypto trading platforms"
-                />
+                  icon={<LinkIcon className="w-5 h-5 text-crypto-primary" />}
+                  text="Connect your mind, body, and energy through AI"
+                  />
                 <Feature
-                  icon={<LightningIcon />}
-                  text="Kickstart your crypto website today"
-                />
+                  icon={<LightningIcon className="w-5 h-5 text-crypto-primary" />}
+                  text="Unlock your potential and accelerate growth"
+                  />
                 <Feature
-                  icon={<SettingsIcon />}
-                  text="Launch your blockchain platform today"
-                />
+                  icon={<SettingsIcon className="w-5 h-5 text-crypto-primary" />}
+                  text="Personalize your path to balance and fulfillment"
+                  />
+                <Feature
+                    icon={<Heart className="w-5 h-5 text-crypto-primary" />}
+                    text="Align your emotions, purpose, and daily actions"
+                  />
+
               </div>
             </div>
           </motion.div>
 
-          <motion.div className="hidden lg:block flex-1" {...fadeIn}>
+          <motion.div className="w-full lg:flex-1 flex justify-center lg:justify-end" {...fadeIn}>
             <PortfolioCard />
           </motion.div>
         </div>
@@ -162,45 +190,42 @@ export default function Index() {
 
       {/* Stats Section */}
       <motion.section
-        className="py-18 px-12 max-w-[1300px] mx-auto"
+        className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto"
         {...staggerContainer}
       >
-        <div className="flex justify-center gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 justify-center gap-4 md:gap-6">
           {[
-            { value: "6M+", label: "Active users" },
-            { value: "24/7", label: "Users support" },
+            { value: "10K+", label: "Active users" },
+            { value: "24/7", label: "Personalized Support" },
             { value: "160+", label: "Countries" },
             { value: "$22B+", label: "Trade volume" },
           ].map((stat, i) => (
             <motion.div
               key={i}
-              className="flex-1 flex flex-col items-center gap-1 py-12 px-6 rounded-2xl border border-white/10 bg-white/5"
+              className="flex flex-col items-center gap-1 py-8 md:py-12 px-3 md:px-6 rounded-2xl border border-white/10 bg-white/5"
               {...fadeInUp}
             >
-              <div className="text-[32px] leading-[120%] font-medium text-crypto-primary">
+              <div className="text-[24px] md:text-[32px] leading-[120%] font-medium text-crypto-primary">
                 {stat.value}
               </div>
-              <div className="text-base text-white/80">{stat.label}</div>
+              <div className="text-sm md:text-base text-white/80 text-center">{stat.label}</div>
             </motion.div>
           ))}
         </div>
       </motion.section>
 
       {/* One Application Section */}
-      <section className="py-18 px-12 max-w-[1300px] mx-auto">
-        <motion.div className="flex flex-col items-center gap-10" {...fadeInUp}>
+      <section className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
+        <motion.div className="flex flex-col items-center gap-6 md:gap-10" {...fadeInUp}>
           <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-base">
-              We deliver{" "}
-              <span className="text-crypto-primary">best solution</span>
-            </p>
-            <h2 className="text-[40px] leading-[120%] font-medium tracking-tight max-w-3xl">
+            <br className="hidden md:block" /><br className="hidden md:block" />
+            <h2 className="text-[24px] sm:text-[32px] md:text-[40px] leading-[120%] font-medium tracking-tight max-w-3xl px-4">
               One application with multiple options to give you freedom of
               buying & selling
             </h2>
           </div>
 
-          <div className="relative w-full h-[840px]">
+          <div className="relative w-full h-[400px] md:h-[600px] lg:h-[840px] hidden md:block">
             <OneApplicationGraphic />
           </div>
         </motion.div>
@@ -208,31 +233,65 @@ export default function Index() {
 
       {/* CTA Section */}
       <motion.section
-        className="py-18 px-12 max-w-[1300px] mx-auto"
+        className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto"
         {...fadeInUp}
       >
         <div className="flex justify-center">
-          <div className="w-full max-w-[1200px] p-16 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex justify-between items-center">
-            <div className="flex flex-col gap-3 max-w-xl">
-              <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-                Crypgo powered by framer platform
+          <div className="w-full max-w-[1200px] p-8 md:p-16 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col items-center gap-6 md:gap-8">
+            <div className="flex flex-col gap-3 text-center">
+              <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+              Available <span className="text-crypto-primary">Everywhere</span>
               </h2>
-              <p className="text-base text-white/60">
-                Our landing page empower framer developers to have free, safer
-                and more trustworthy experiences
+              <p className="text-sm md:text-base text-white/60 px-4">
+              Whether you're on Android, iOS, or Web, Kailasa Supreme Intelligence syncs seamlessly across devices to guide you wherever you go.
+
               </p>
             </div>
-            <button className="flex items-center gap-2 bg-crypto-primary text-crypto-bg px-6 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors">
-              Get template
-              <ArrowRight className="w-5 h-5" />
-            </button>
+            <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+              <a
+                href="http://localhost:3000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src="/Login to Web Badge.svg"
+                  alt="Login to Web"
+                  className="h-10 md:h-12 w-auto"
+                />
+              </a>
+              <a
+                href="http://localhost:3000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src="/Mobile App Store Badges_white.svg"
+                  alt="Download on the App Store"
+                  className="h-10 md:h-12 w-auto"
+                />
+              </a>
+              <a
+                href="http://localhost:3000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src="/Mobile App Store Badges_android_white.svg"
+                  alt="Get it on Google Play"
+                  className="h-10 md:h-12 w-auto"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </motion.section>
 
       {/* Create Portfolio Section */}
-      <section className="py-18 px-12 max-w-[1300px] mx-auto">
-        <div className="flex justify-between items-center gap-12">
+      <section className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12">
           <motion.div
             className="hidden lg:block flex-1 relative h-[517px]"
             {...fadeIn}
@@ -240,33 +299,31 @@ export default function Index() {
             <CryptoCardsGraphic />
           </motion.div>
 
-          <motion.div className="w-full max-w-[585px] pl-8" {...fadeInUp}>
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col gap-3">
-                <p className="text-base">
+          <motion.div className="w-full max-w-[585px] lg:pl-8" {...fadeInUp}>
+            <div className="flex flex-col gap-6 md:gap-10">
+              <div className="flex flex-col gap-3 text-center lg:text-left">
+                {/* <p className="text-base">
                   Crypto landing page{" "}
                   <span className="text-crypto-primary">template</span>
-                </p>
-                <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-                  Create your cryptocurrency portfolio today
-                </h2>
-                <p className="text-base text-white/60">
-                  Coinbase has a variety of features that make it the best place
-                  to start trading.
+                </p> */}
+                <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+                Hyperpersonalize your AI experience                </h2>
+                <p className="text-sm md:text-base text-white/60">
+                Seamlessly integrates with your favorite apps to understand your context and deliver smarter, tailored insights.
                 </p>
               </div>
 
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-4 md:gap-5">
                 {[
-                  { icon: <ChartIcon />, text: "Manage your portfolio" },
-                  { icon: <ShieldIcon />, text: "Vault protection" },
-                  { icon: <MobileIcon />, text: "Mobile apps" },
+                  { icon: <ChartIcon className="w-6 h-6 text-crypto-primary" />, text: "Manage your portfolio" },
+                  { icon: <ShieldIcon className="w-6 h-6 text-crypto-primary" />, text: "Vault protection" },
+                  { icon: <MobileIcon className="w-6 h-6 text-crypto-primary" />, text: "Mobile apps" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4">
+                  <div key={i} className="flex items-center gap-4 justify-center lg:justify-start">
                     <div className="flex p-3 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
                       {item.icon}
                     </div>
-                    <p className="text-xl font-medium">{item.text}</p>
+                    <p className="text-lg md:text-xl font-medium">{item.text}</p>
                   </div>
                 ))}
               </div>
@@ -276,46 +333,44 @@ export default function Index() {
       </section>
 
       {/* Upgrade Section */}
-      <section className="py-18 px-12 max-w-[1300px] mx-auto">
-        <div className="flex justify-between items-center gap-12">
+      <section className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12">
           <motion.div className="w-full max-w-[585px]" {...fadeInUp}>
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col gap-3">
-                <p className="text-base">
-                  Crypgo <span className="text-crypto-primary">upgrade</span>
-                </p>
-                <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-                  Upgrade your crypto business
+            <div className="flex flex-col gap-6 md:gap-10">
+              <div className="flex flex-col gap-3 text-center lg:text-left">
+
+                <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+                  Upgrade your Mental Health
                 </h2>
-                <p className="text-base text-white/60">
+                <p className="text-sm md:text-base text-white/60">
                   Get faster, safer, more affordable cloud object storage with
                   no centeral point of failure.
                 </p>
               </div>
 
-              <div className="flex gap-10">
-                <div className="flex flex-col gap-5">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+                <div className="flex flex-col gap-4 md:gap-5">
                   {[
                     "100% secure",
                     "A fraction of the cost",
                     "More durable",
                     "Easier to use",
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckIcon />
+                    <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
+                      <CheckIcon className="w-5 h-5 text-crypto-primary" />
                       <p className="text-base font-medium">{item}</p>
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-4 md:gap-5">
                   {[
                     "Free figma file",
                     "Powerful in performance",
                     "Designed for crypto",
                     "100% free framer template",
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckIcon />
+                    <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
+                      <CheckIcon className="w-5 h-5 text-crypto-primary" />
                       <p className="text-base font-medium">{item}</p>
                     </div>
                   ))}
@@ -333,105 +388,22 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Support Section */}
+      {/* Video Section */}
       <motion.section
-        className="py-18 px-12 max-w-[1300px] mx-auto"
+        className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto"
         {...fadeInUp}
       >
-        <div className="flex flex-col items-center gap-10">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-base">
-              Always by <span className="text-crypto-primary">your side</span>
-            </p>
-            <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-              Be the first to use our Crypgo!
-            </h2>
-            <p className="text-base text-white/60 max-w-2xl">
-              Get faster, safer, more affordable cloud object storage with no
-              centeral point of failure.
-            </p>
-          </div>
-
-          <div className="w-full pt-18 flex flex-col items-center gap-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-            <SupportWaveGraphic />
-
-            <div className="w-full px-24 pb-12 flex justify-center gap-24">
-              {[
-                {
-                  icon: <HeadsetIcon />,
-                  title: "24/7 Support",
-                  desc: "Need help? Get your requests solved quickly via support team.",
-                },
-                {
-                  icon: <UsersIcon />,
-                  title: "Community",
-                  desc: "Join the conversations on our worldwide OKEx communities",
-                },
-                {
-                  icon: <BookIcon />,
-                  title: "Academy",
-                  desc: "Learn blockchain and crypto for free.",
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center gap-5 max-w-[240px]"
-                >
-                  <div className="flex p-4 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
-                    {item.icon}
-                  </div>
-                  <div className="flex flex-col items-center gap-2 text-center">
-                    <h3 className="text-xl font-medium">{item.title}</h3>
-                    <p className="text-base text-white/60">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <div className="flex flex-col items-center gap-6 md:gap-10">
+          <div className="w-full max-w-7xl">
+            <VideoPlayer />
           </div>
         </div>
       </motion.section>
 
-      {/* FAQ Section */}
-      <motion.section
-        className="py-18 px-12 max-w-[1300px] mx-auto"
-        {...fadeInUp}
-      >
-        <div className="flex flex-col items-center gap-10">
-          <div className="flex flex-col items-center gap-2 text-center">
-            <p className="text-base">
-              Popular <span className="text-crypto-primary">questions</span>
-            </p>
-            <h2 className="text-[40px] leading-[120%] font-medium tracking-tight">
-              Learn more about Crypgo
-            </h2>
-            <p className="text-base text-white/60">
-              We accept 100+ cryptocurrencies around the world
-            </p>
-          </div>
-
-          <div className="w-full max-w-[992px] flex flex-col gap-5">
-            {[
-              "What is Crypgo?",
-              "Is Crypgo available worldwide?",
-              "Which cryptocurrencies are supported on Crypgo?",
-              "Is my personal information secure with Crypgo?",
-              "Are there any deposit or withdrawal fees?",
-              "Does Crypgo offer advanced trading tools?",
-            ].map((question, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between p-6 rounded-2xl bg-white/5 cursor-pointer hover:bg-white/10 transition-colors"
-              >
-                <p className="text-xl font-medium">{question}</p>
-                <Plus className="w-8 h-8 text-crypto-primary" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
 
       {/* Footer */}
       <Footer />
+      </div>
     </div>
   );
 }
@@ -453,205 +425,430 @@ function Logo() {
         <path d="M14.782 16.285L6.261 22.99V9.58l8.521 6.705z" fill="#99E39E" />
         <path d="M10.522 16.285L2 22.99V9.58l8.522 6.705z" fill="#99E39E" />
       </svg>
-      <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
-        <text
-          x="0"
-          y="24"
-          fill="white"
-          fontSize="24"
-          fontWeight="500"
-          fontFamily="DM Sans"
-        >
-          Crypgo
-        </text>
-      </svg>
+      <div className="flex flex-col">
+        <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
+          <text
+            x="0"
+            y="24"
+            fill="white"
+            fontSize="24"
+            fontWeight="500"
+            fontFamily="DM Sans"
+          >
+            Kailasa
+          </text>
+        </svg>
+        <p className="text-xs text-white/60 font-normal mt-0.5">Supreme Intelligence</p>
+      </div>
     </div>
   );
 }
 
 function Feature({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-start gap-4">
-      <div className="flex p-2.5 items-center justify-center rounded-full bg-white/10">
+    <div className="flex items-start gap-3 md:gap-4 w-full md:w-auto">
+      <div className="flex p-2 md:p-2.5 items-center justify-center rounded-full bg-white/10 shrink-0">
         {icon}
       </div>
-      <p className="text-base font-medium max-w-[200px]">{text}</p>
+      <p className="text-sm md:text-lg font-medium max-w-[200px]">{text}</p>
     </div>
   );
 }
 
 function PortfolioCard() {
-  return (
-    <div className="w-full max-w-[371px] p-8 flex flex-col gap-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-      <p className="text-xl font-medium">
-        Your portfolio is up <span className="text-crypto-primary">2.31%</span>
-      </p>
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
 
-      <div className="flex flex-col gap-8">
-        {[
-          { name: "Bitcoin", symbol: "BTC/USD", change: "1.05%", icon: "🪙" },
-          { name: "Ethereum", symbol: "BTC/USD", change: "1.05%", icon: "💎" },
-          { name: "Litecoin", symbol: "BTC/USD", change: "1.05%", icon: "🔷" },
-          { name: "Polkadot", symbol: "BTC/USD", change: "1.05%", icon: "⚪" },
-        ].map((coin, i) => (
-          <div key={i} className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-crypto-bitcoin flex items-center justify-center text-2xl">
-                {coin.icon}
-              </div>
-              <div className="flex flex-col gap-0.5">
-                <p className="text-base font-semibold">{coin.name}</p>
-                <p className="text-sm text-white/80">{coin.symbol}</p>
-              </div>
+  const chartData = [
+    { name: "Succeed", value: 72, fill: "#2a463a", label: "Completed Goals" },
+    { name: "Fail to achieve goals", value: 28, fill: "#a2dcab", label: "Uncompleted Goals" },
+  ];
+
+  const chartConfig = {
+    value: {
+      label: "Value",
+    },
+    succeed: {
+      label: "Succeed",
+      color: "#60A5FA",
+    },
+    fail: {
+      label: "Fail to achieve goals",
+      color: "#1E40AF",
+    },
+  } satisfies ChartConfig;
+
+  return (
+    <div className="w-full max-w-[600px] mx-auto lg:ml-auto">
+      <style>{`
+        [data-chart] .recharts-layer path,
+        [data-chart] path.recharts-sector {
+          transition: opacity 0.6s ease-in-out !important;
+          transition-property: opacity !important;
+        }
+      `}</style>
+      <div className="relative">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[400px] md:max-h-[500px] lg:max-h-[600px]"
+        >
+          <PieChart>
+            <Pie
+              data={chartData}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={120}
+              outerRadius={200}
+              strokeWidth={0}
+              activeIndex={activeIndex}
+              activeShape={({
+                outerRadius = 0,
+                ...props
+              }: PieSectorDataItem) => (
+                <Sector {...props} outerRadius={outerRadius + 10} />
+              )}
+              onMouseEnter={(_, index) => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(-1)}
+              isAnimationActive={false}
+            >
+              {chartData.map((entry, index) => {
+                const isInactive = activeIndex >= 0 && activeIndex !== index;
+                return (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.fill}
+                    opacity={isInactive ? 0.4 : 1}
+                  />
+                );
+              })}
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+        {/* Center text overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+          <div className="text-center">
+            <div className="text-[48px] md:text-[56px] lg:text-[72px] font-bold leading-none mb-2 text-white">
+              72%
             </div>
-            <div className="flex items-center gap-1">
-              <p className="text-base font-medium text-crypto-primary">
-                {coin.change}
-              </p>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path
-                  d="M10 3.333V16.667M14.167 7.5s-3.07-4.167-4.167-4.167c-1.098 0-4.167 4.167-4.167 4.167"
-                  stroke="#99E39E"
-                  strokeWidth="1.25"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <div className="text-base md:text-lg leading-tight text-white/80">
+              <div>of reported</div>
+              <div>goals on Kailasa</div>
+              <div>are completed</div>
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
 }
 
 function FeaturedCoins() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const supremes = [
+    { 
+      name: 'Dhani', 
+      image: '/Dhani.webp',
+      color: 'rgba(0, 128, 128, 0.6)',
+      subtitle: 'AI for Health and Medicine',
+      description: 'Restore balance and vitality with Dhani, your AI-powered health guide. Whether you\'re focused on emotional healing or physical recovery, Dhani integrates AI healthcare technology and holistic practices to promote complete well-being.',
+      features: [
+        'Personalized support through AI medical insights',
+        'Wellness recommendations via AI tools for healthcare',
+      ],
+      footer: 'Discover how AI in healthcare and ancient wisdom work together to optimize your health.'
+    },
+    { 
+      name: 'Kubera', 
+      image: '/Kubera.webp',
+      color: 'rgba(212, 179, 0, 0.6)',
+      subtitle: 'AI in Finance & Wealth',
+      description: 'Unlock your path to abundance with Kubera, your intelligent wealth companion. Whether you\'re aiming to grow your savings or conduct AI financial statement analysis, Kubera uses modern AI in finance tools combined with timeless strategies to guide you toward financial empowerment.',
+      features: [
+        'Intelligent financial analysis software',
+        'Advanced AI financial planning software',
+        'Smart AI financial forecasting',
+      ],
+      footer: 'Transform your finances with cutting-edge finance AI insights.'
+    },
+    { 
+      name: 'Fu Shen', 
+      image: '/Feshen.webp',
+      color: 'rgba(255, 20, 147, 0.6)',
+      subtitle: 'AI for Relationships & Fulfillment',
+      description: 'Build stronger connections and find inner joy with Fu Shen, your AI-powered relationship and wellness coach. Whether you\'re navigating emotions, love, or personal growth, Fu Shen blends AI and modern spirituality to create harmony in life.',
+      features: [
+        'Guidance for love and self-discovery with AI wellness companion',
+        'Support through AI life coaching tools',
+      ],
+      footer: 'Experience more meaningful connections and happiness with the help of AI.'
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % supremes.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [supremes.length]);
+
+  const nextSupreme = () => setCurrentIndex(prev => (prev + 1) % supremes.length);
+  const prevSupreme = () => setCurrentIndex(prev => (prev - 1 + supremes.length) % supremes.length);
+
   return (
     <motion.section
-      className="py-18 px-12 max-w-[1300px] mx-auto"
+      className="py-12 md:py-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <div className="flex flex-col items-center gap-10">
-        <p className="text-base text-center">
+      <div className="flex flex-col items-center gap-6 md:gap-10">
+        <p className="text-sm md:text-base text-center">
           Featured <span className="text-crypto-primary">crypto coins</span>
         </p>
-        <h2 className="text-[40px] leading-[120%] font-medium tracking-tight text-center">
+        <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight text-center px-4">
           Guided by our 3 supremes
         </h2>
 
-        <div className="w-full h-[400px] relative">
-          <svg
-            width="100%"
-            height="400"
-            viewBox="0 0 1300 400"
-            fill="none"
-            className="absolute inset-0"
-          >
-            <path
-              d="M50 200 Q 325 100, 650 200 T 1250 200"
-              stroke="url(#grad1)"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M50 250 Q 325 150, 650 250 T 1250 250"
-              stroke="url(#grad2)"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M50 300 Q 325 200, 650 300 T 1250 300"
-              stroke="url(#grad3)"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-            />
+        {/* Supreme Card Carousel */}
+        <div className="w-full max-w-7xl relative overflow-hidden hidden md:block">
+          <div className="relative flex items-center justify-center h-[900px]">
+            {[-1, 0, 1].map((offset) => {
+              const index = (currentIndex + offset + supremes.length) % supremes.length;
+              const supreme = supremes[index];
+              const position = offset === 0 ? "center" : offset === -1 ? "left" : "right";
+              const scale = position === "center" ? 1 : 0.7;
+              const zIndex = position === "center" ? 20 : 10;
+              const opacity = position === "center" ? 1 : 0.3;
 
-            <circle cx="200" cy="180" r="8" fill="#E79740" opacity="0.9" />
-            <circle cx="650" cy="200" r="8" fill="#E30278" opacity="0.9" />
-            <circle cx="1100" cy="220" r="8" fill="#7E4BD0" opacity="0.9" />
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute w-[35%] max-w-lg h-full flex items-center justify-center"
+                  initial={{ 
+                    x: position === "left" ? "-70%" : position === "right" ? "70%" : "0%", 
+                    scale: 0.6, 
+                    opacity: 0.3 
+                  }}
+                  animate={{ 
+                    x: position === "left" ? "-70%" : position === "right" ? "70%" : "0%", 
+                    scale, 
+                    opacity 
+                  }}
+                  transition={{ duration: 0.5 }}
+                  style={{ zIndex }}
+                >
+                  <div
+                    className="w-full h-[95%] rounded-3xl border border-white/20 flex flex-col overflow-hidden backdrop-blur-sm"
+                    style={{ backgroundColor: supreme.color }}
+                  >
+                    {/* Image section (takes 40%) */}
+                    <div className="flex justify-center items-center flex-[0.4] p-6">
+                      <img
+                        src={supreme.image}
+                        alt={supreme.name}
+                        className="w-full h-full object-contain rounded-2xl shadow-2xl"
+                      />
+                    </div>
 
-            <defs>
-              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#000510" stopOpacity="0" />
-                <stop offset="50%" stopColor="#E79740" />
-                <stop offset="100%" stopColor="#000510" stopOpacity="0" />
-              </linearGradient>
-              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#000510" stopOpacity="0" />
-                <stop offset="50%" stopColor="#E30278" />
-                <stop offset="100%" stopColor="#000510" stopOpacity="0" />
-              </linearGradient>
-              <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#000510" stopOpacity="0" />
-                <stop offset="50%" stopColor="#7E4BD0" />
-                <stop offset="100%" stopColor="#000510" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
+                    {/* Text section (takes remaining 60%) */}
+                    <div className="flex flex-col flex-[0.6] justify-between px-6 pb-6 text-white">
+                      <div className="text-center">
+                        <h3 className="text-3xl font-bold mb-2">{supreme.name}</h3>
+                        <div className="w-16 h-0.5 bg-white/50 mx-auto mb-3"></div>
+                        <h4 className="text-lg font-semibold">{supreme.subtitle}</h4>
+                      </div>
+
+                      <p className="text-sm text-white/90 mt-3 leading-snug text-center">
+                        {supreme.description}
+                      </p>
+
+                      <ul className="mt-3 space-y-1 text-left text-sm text-white/90">
+                        {supreme.features.map((feature, idx) => (
+                          <li key={idx} className="flex gap-1.5">
+                            <span className="font-semibold">{idx + 1}.</span>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <p className="text-xs text-white/80 mt-4 text-center leading-tight">
+                        {supreme.footer}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSupreme}
+              className="absolute left-4 z-30 bg-white/20 backdrop-blur-md rounded-full p-3 hover:bg-white/30 transition-colors"
+            >
+              <ChevronLeft className="w-8 h-8 text-white" />
+            </button>
+            <button
+              onClick={nextSupreme}
+              className="absolute right-4 z-30 bg-white/20 backdrop-blur-md rounded-full p-3 hover:bg-white/30 transition-colors"
+            >
+              <ChevronRight className="w-8 h-8 text-white" />
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Simple List */}
+        <div className="w-full flex flex-col gap-6 md:hidden px-4">
+          {supremes.map((supreme, idx) => (
+            <div
+              key={idx}
+              className="rounded-3xl border border-white/20 flex flex-col overflow-hidden backdrop-blur-sm"
+              style={{ backgroundColor: supreme.color }}
+            >
+              <div className="flex justify-center items-center flex-[0.4] p-4">
+                <img
+                  src={supreme.image}
+                  alt={supreme.name}
+                  className="w-full h-48 object-contain rounded-2xl shadow-2xl"
+                />
+              </div>
+              <div className="flex flex-col gap-4 px-6 pb-6 text-white">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-2">{supreme.name}</h3>
+                  <div className="w-16 h-0.5 bg-white/50 mx-auto mb-3"></div>
+                  <h4 className="text-base font-semibold">{supreme.subtitle}</h4>
+                </div>
+                <p className="text-sm text-white/90 leading-snug text-center">
+                  {supreme.description}
+                </p>
+                <ul className="space-y-1 text-left text-sm text-white/90">
+                  {supreme.features.map((feature, idx) => (
+                    <li key={idx} className="flex gap-1.5">
+                      <span className="font-semibold">{idx + 1}.</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="w-full h-[100px] md:h-[200px]"></div>
       </div>
     </motion.section>
   );
 }
 
 function OneApplicationGraphic() {
+  // 3 circles positioned on the ring lines
+  const circles = [
+    {
+      angle: 45, // Top-right
+      icon: <RefinementIcon className="w-6 h-6 text-crypto-primary" />,
+      title: "Refinement",
+      desc: "Refine & improve your crypto landing page",
+    },
+    {
+      angle: 165, // Bottom-right
+      icon: <ToolIcon className="w-6 h-6 text-crypto-primary" />,
+      title: "Scale and support",
+      desc: "Deploy product live and ensure expert support",
+    },
+    {
+      angle: -45, // Bottom-left
+      icon: <LayersIcon className="w-6 h-6 text-crypto-primary" />,
+      title: "Prototype",
+      desc: "Build crypto website test for your product",
+    },
+  ];
+
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative">
+      <div className="relative w-full h-full flex items-center justify-center">
+        {/* Rings behind the image */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[690px] h-[690px] rounded-full border border-white/10"></div>
+          <div className="w-[690px] h-[690px] rounded-full border border-white/70"></div>
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] rounded-full border border-white/10 opacity-60"></div>
+          <div className="w-[600px] h-[600px] rounded-full border border-white opacity-60"></div>
         </div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[500px] h-[500px] rounded-full border border-white/10 opacity-40"></div>
+          <div className="w-[500px] h-[500px] rounded-full border border-white opacity-40"></div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-center h-[690px]">
+        {/* Connection lines from center to circles on the ring */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 5 }}>
+          {circles.map((circle, index) => {
+            const angleRad = (circle.angle * Math.PI) / 180;
+            const centerX = 50; // Percentage
+            const centerY = 50; // Percentage
+            const radius = 41; // Percentage (345px out of 840px)
+            const x = centerX + radius * Math.cos(angleRad);
+            const y = centerY + radius * Math.sin(angleRad);
+            
+            return (
+              <line
+                key={index}
+                x1={`${centerX}%`}
+                y1={`${centerY}%`}
+                x2={`${x}%`}
+                y2={`${y}%`}
+                stroke="rgba(255, 255, 255, 0.1)"
+                strokeWidth="1"
+              />
+            );
+          })}
+        </svg>
+
+        {/* Image on top of rings */}
+        <div className="relative z-10 flex items-center justify-center">
           <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/2386db62ef9d8c4b73a622bece5684d03c13f120?width=663"
+            src="/goals.png"
             alt="Mobile App"
             className="w-[331px] h-[675px] object-contain"
           />
         </div>
 
-        <InfoBubble
-          top="154px"
-          right="-100px"
-          icon={<RefinementIcon />}
-          title="Refinement"
-          desc="Refine & improve your crypto landing page"
-        />
-        <InfoBubble
-          top="508px"
-          right="-120px"
-          icon={<ToolIcon />}
-          title="Scale and support"
-          desc="Deploy product live and ensure expert support"
-        />
-        <InfoBubble
-          top="442px"
-          left="-100px"
-          icon={<LayersIcon />}
-          title="Prototype"
-          desc="Build crypto website test for your product"
-          align="right"
-        />
-        <InfoBubble
-          top="190px"
-          left="-150px"
-          icon={<GridIcon />}
-          title="Planning"
-          desc="Map the crypto projects scope with framer template"
-          align="right"
-        />
+        {/* Circles positioned on the ring lines */}
+        {circles.map((circle, index) => {
+          const angleRad = (circle.angle * Math.PI) / 180;
+          const centerX = 50; // Percentage
+          const centerY = 50; // Percentage
+          const radius = 41; // Percentage
+          const x = centerX + radius * Math.cos(angleRad);
+          const y = centerY + radius * Math.sin(angleRad);
+          const isLeft = circle.angle > 90 && circle.angle < 270;
+          
+          return (
+            <div
+              key={index}
+              className="absolute flex items-start gap-3"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+                transform: 'translate(-50%, -50%)',
+                zIndex: 20,
+              }}
+            >
+              <div
+                className={`flex flex-col ${isLeft ? 'items-end text-right' : 'items-start'} gap-1 max-w-[220px]`}
+              >
+                <div className={`flex items-center gap-2 mb-2 ${isLeft ? 'flex-row-reverse' : ''}`}>
+                  <div className="flex p-2 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 shrink-0">
+                    {circle.icon}
+                  </div>
+                  <h3 className="text-base font-medium">
+                    {circle.title}
+                  </h3>
+                </div>
+                <p className={`text-sm text-white/60 ${isLeft ? 'text-right' : 'text-left'}`}>
+                  {circle.desc}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -691,585 +888,197 @@ function InfoBubble({
 }
 
 function CryptoCardsGraphic() {
+  const apps = [
+    {
+      name: "Gmail",
+      icon: "/gmail.png",
+      top: "95px",
+      left: "63px",
+      borderColor: "#EA4335", // Gmail red
+    },
+    {
+      name: "Google Calendar",
+      icon: "/gcalender.png",
+      top: "201px",
+      left: "292px",
+      borderColor: "#4285F4", // Google Calendar blue
+    },
+    {
+      name: "LinkedIn",
+      icon: "/linkedin.png",
+      top: "39px",
+      left: "380px",
+      borderColor: "#0A66C2", // LinkedIn blue
+    },
+    {
+      name: "WhatsApp",
+      icon: "/whatsapp.png",
+      top: "346px",
+      left: "151px",
+      borderColor: "#25D366", // WhatsApp green
+    },
+  ];
+
   return (
     <div className="relative w-full h-full">
-      <div className="absolute left-[63px] top-[95px] w-[194px] h-[212px] p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col items-center gap-6">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-crypto-ethereum flex items-center justify-center text-xl">
-            💎
-          </div>
-          <div className="flex flex-col gap-0.5">
-            <p className="text-xl font-medium">Ethereum</p>
-            <div className="flex items-center gap-1 text-sm text-white/80">
-              <span>ETH</span>
-              <span className="text-white/60">USD</span>
-            </div>
-          </div>
+      {apps.map((app, index) => (
+        <div
+          key={index}
+          className="absolute w-[194px] h-[212px] p-8 rounded-2xl border-2 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col items-center justify-center gap-4"
+          style={{
+            top: app.top,
+            left: app.left,
+            borderColor: app.borderColor,
+          }}
+        >
+          <img
+            src={app.icon}
+            alt={app.name}
+            className="w-16 h-16 object-contain"
+          />
+          <p className="text-xl font-medium text-center">{app.name}</p>
         </div>
-        <div className="flex flex-col items-center gap-1">
-          <p className="text-[28px] font-medium tracking-tight">******</p>
-          <p className="text-xs font-bold text-crypto-primary">5.23% (***)</p>
-        </div>
-      </div>
-
-      <div className="absolute left-[292px] top-[201px] w-[194px] h-[212px] p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col items-center gap-6">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-crypto-bitcoin flex items-center justify-center text-xl">
-            🪙
-          </div>
-          <div className="flex flex-col gap-0.5">
-            <p className="text-xl font-medium">Bitcoin</p>
-            <div className="flex items-center gap-1 text-sm text-white/80">
-              <span>BTC</span>
-              <span className="text-white/60">USD</span>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1">
-          <p className="text-[28px] font-medium tracking-tight">******</p>
-          <p className="text-xs font-bold text-crypto-primary">7.68% (***)</p>
-        </div>
-      </div>
-
-      <div className="absolute left-[292px] top-[39px] w-[106px] h-[106px] p-5 rounded-2xl border border-crypto-avalanche/20 bg-crypto-avalanche/20 backdrop-blur-sm flex items-center justify-center">
-        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl">
-          🔺
-        </div>
-      </div>
-
-      <div className="absolute left-[151px] top-[346px] w-[106px] h-[106px] p-5 rounded-2xl border border-crypto-polkadot/20 bg-crypto-polkadot/20 backdrop-blur-sm flex items-center justify-center">
-        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl">
-          ⚪
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
 
 function ChartCardsGraphic() {
+  const [animatedPoints, setAnimatedPoints] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Progressive incline line data with upward trend and fluctuations
+  const allPoints = [
+    20, 21, 23, 22, 26, 21, 27, 30, 28, 33, 34, 34, 36, 39, 38, 42, 43, 43,
+    41, 46, 48, 47, 49, 52, 51, 55, 57, 56, 60, 59, 63, 66, 66, 67, 70, 69,
+    73, 74, 75, 78
+  ];
+  
+  
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    // Animate the line drawing
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= allPoints.length) {
+        setAnimatedPoints(allPoints.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 60);
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const points = animatedPoints;
+  const viewBoxWidth = 600;
+  const viewBoxHeight = 200;
+  const padding = 20;
+  const width = viewBoxWidth - 2 * padding;
+  const height = viewBoxHeight - 2 * padding;
+  
+  const maxY = Math.max(...allPoints, 80);
+  const minY = Math.min(...allPoints, 20);
+  const yRange = maxY - minY;
+
+  const pathData = points
+    .map((y, i) => {
+      const x = (i / (allPoints.length - 1 || 1)) * width + padding;
+      const normalizedY = (y - minY) / yRange;
+      const actualY = height - normalizedY * height + padding;
+      return `${i === 0 ? 'M' : 'L'} ${x} ${actualY}`;
+    })
+    .join(' ');
+
   return (
-    <div className="relative w-full h-full">
-      <div className="absolute left-[52px] top-[85px] w-[522px] h-[331px] p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full bg-crypto-bitcoin flex items-center justify-center text-sm">
-              🪙
-            </div>
-            <p className="text-xl font-medium">USD/BTC</p>
-          </div>
-          <div className="flex flex-col items-end text-sm">
-            <p className="text-white/60">24h Volume</p>
-            <p className="font-medium">**** BTC</p>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          {[38, 36, 34, 32, 30].map((price, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <div className="flex-1 h-px bg-white/10"></div>
-              <p className="text-sm text-white/40 w-10 text-right">${price}K</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-3 flex justify-between text-sm text-white/40">
-          {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "July"].map(
-            (month, i) => (
-              <span key={i}>{month}</span>
-            ),
-          )}
-        </div>
-
-        <div className="mt-8 flex gap-1 items-end h-32">
-          {[40, 28, 50, 45, 35, 55, 48, 38, 60, 42, 68, 52, 58, 45].map(
-            (height, i) => (
-              <div key={i} className="flex-1 flex flex-col justify-end">
-                <div
-                  className={`w-full rounded ${i % 3 === 0 ? "bg-crypto-primary" : "bg-red-400"}`}
-                  style={{ height: `${height}%` }}
-                ></div>
-              </div>
-            ),
-          )}
-        </div>
-      </div>
-
-      <div className="absolute right-0 top-0 w-[181px] h-[248px] p-5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-        <div className="flex items-center justify-between mb-6">
-          <div className="w-6 h-6 rounded-full bg-crypto-bitcoin flex items-center justify-center text-xs">
-            🪙
-          </div>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <circle cx="10" cy="4" r="1.5" fill="white" />
-            <circle cx="10" cy="10" r="1.5" fill="white" />
-            <circle cx="10" cy="16" r="1.5" fill="white" />
-          </svg>
-        </div>
-
-        <div className="flex flex-col items-center gap-4">
-          <div className="relative w-28 h-28">
-            <svg width="112" height="112" viewBox="0 0 112 112">
-              <circle
-                cx="56"
-                cy="56"
-                r="50"
-                fill="none"
-                stroke="rgba(255,255,255,0.1)"
-                strokeWidth="8"
-              />
-              <circle
-                cx="56"
-                cy="56"
-                r="50"
-                fill="none"
-                stroke="#99E39E"
-                strokeWidth="8"
-                strokeDasharray="280"
-                strokeDashoffset="90"
-                strokeLinecap="round"
-                transform="rotate(-90 56 56)"
-              />
-            </svg>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-xl font-medium">78%</p>
-            </div>
-          </div>
-          <p className="text-xs text-white/60">2118 - 3000 %</p>
-
-          <div className="flex gap-6 text-center">
-            <div>
-              <p className="text-sm font-bold">46%</p>
-              <p className="text-xs text-white/60">Growth</p>
-            </div>
-            <div>
-              <p className="text-sm font-bold">42</p>
-              <p className="text-xs text-white/60">Days</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute left-[25px] bottom-0 w-[230px] h-[216px] p-5 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <p className="text-xs text-white/40">Montly sales charts</p>
-            <p className="text-lg font-bold mt-1">******</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M8 3v10M11 7s-2 4-3 4-3-4-3-4"
-                stroke="#99E39E"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-            <p className="text-xs font-bold text-crypto-primary">+2.45%</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1 mb-4">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="6" fill="#99E39E" stroke="#99E39E" />
+    <div 
+      ref={containerRef}
+      className="relative w-full h-full flex items-center justify-center"
+    >
+      <div className="w-full max-w-[600px] aspect-video">
+        <svg
+          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+          className="w-full h-full"
+        >
+          {/* Progress line */}
+          {points.length > 1 && (
             <path
-              d="M5 7l1.5 1.5L10 5"
-              stroke="#000510"
-              strokeWidth="1.5"
+              d={pathData}
+              fill="none"
+              stroke="#99E39E"
+              strokeWidth="3"
               strokeLinecap="round"
+              strokeLinejoin="round"
             />
-          </svg>
-          <p className="text-xs font-bold text-crypto-primary">On track</p>
-        </div>
-
-        <div className="flex justify-between items-end h-20">
-          {[30, 47, 56, 47, 81, 74, 64].map((height, i) => (
-            <div
-              key={i}
-              className="w-3 rounded-full bg-white/20 flex items-end overflow-hidden"
-            >
-              <div
-                className="w-full bg-crypto-primary rounded-full"
-                style={{ height: `${height}%` }}
-              ></div>
-            </div>
-          ))}
-        </div>
+          )}
+        </svg>
       </div>
     </div>
   );
 }
 
-function SupportWaveGraphic() {
+function VideoPlayer() {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
-    <div className="relative w-full h-[220px]">
-      <svg
-        width="100%"
-        height="220"
-        viewBox="0 0 1200 220"
-        fill="none"
-        className="absolute inset-0"
-      >
-        <defs>
-          <linearGradient id="wave-grad" x1="50%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stopColor="#99E39E" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#99E39E" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M 0 110 Q 150 60, 300 110 T 600 110 T 900 110 T 1200 110 L 1200 220 L 0 220 Z"
-          fill="url(#wave-grad)"
-        />
-        <path
-          d="M 0 110 Q 150 60, 300 110 T 600 110 T 900 110 T 1200 110"
-          stroke="#99E39E"
-          strokeWidth="2"
-          fill="none"
-        />
-      </svg>
+    <div ref={containerRef} className="relative w-full aspect-video rounded-2xl overflow-hidden">
+      <iframe
+        ref={iframeRef}
+        className="w-full h-full"
+        src={isVisible ? "https://www.youtube.com/embed/dY-1dGS5XII?list=TLGG6IaLxAVLidYwMjExMjAyNQ&autoplay=1&mute=1&start=1" : ""}
+        title="Kailasa: Supreme Intelligence"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-crypto-bg border-t border-white/20">
-      <div className="max-w-[1300px] mx-auto px-12 py-20">
-        <div className="flex justify-between items-start mb-16">
-          <div className="flex flex-col gap-6 max-w-[486px]">
-            <Logo />
-            <p className="text-base text-white/60">
-              Transform your crypto business with Crypgo Framer, a template for
-              startups and blockchain services.
-            </p>
-            <div className="flex items-center gap-2">
-              {["facebook", "instagram", "twitter"].map((social, i) => (
-                <div
-                  key={i}
-                  className="flex p-2 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors cursor-pointer"
-                >
-                  <div className="w-5 h-5 bg-white/60 rounded"></div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="flex gap-20">
-            <div className="flex flex-col gap-3">
-              <h3 className="text-xl font-medium mb-2">Links</h3>
-              {["Features", "Benefits", "Services", "Why Crypgo", "FAQs"].map(
-                (link, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="text-base text-white/60 hover:text-white transition-colors"
-                  >
-                    {link}
-                  </a>
-                ),
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <h3 className="text-xl font-medium mb-2">Other Pages</h3>
-              {["Terms", "Disclosures", "Latest News"].map((link, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="text-base text-white/60 hover:text-white transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-medium">Download app</h3>
-              <div className="flex flex-col gap-4">
-                <div className="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors cursor-pointer">
-                  <div className="w-32 h-10 bg-white/20 rounded"></div>
-                </div>
-                <div className="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors cursor-pointer">
-                  <div className="w-32 h-10 bg-white/20 rounded"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="pt-8 border-t border-white/20 flex justify-center">
-          <p className="text-sm text-white/40">
-            Copyright ©2025 Crypgo. All rights reserved
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-// Icons
-function LinkIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path
-        d="M7.917 12.083l4.166-4.166M14.039 12.175l2.174-2.175c1.716-1.715 1.716-3.505 0-5.22-1.715-1.716-3.505-1.716-5.22 0l-2.175 2.174"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function LightningIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path
-        d="M7.19 10.561H6.807c-1.236 0-1.854 0-2.118-.407-.264-.408-.013-.976.489-2.112l1.51-3.414c.456-1.033.685-1.55 1.127-1.839.443-.29 1.005-.29 2.13-.29h1.741c1.365 0 2.048 0 2.306.446.257.446-.082 1.042-.759 2.234l-.893 1.572"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function SettingsIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path
-        d="M12.917 10a2.917 2.917 0 11-5.834 0 2.917 2.917 0 015.834 0z"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M17.51 11.747c.435-.123.653-.184.739-.296.086-.112.086-.293.086-.653V9.194c0-.36 0-.54-.086-.652-.086-.112-.304-.173-.739-.296-1.626-.439-2.842-1.936-2.462-3.551.115-.444.173-.666.118-.797-.055-.13-.213-.22-.529-.4l-1.438-.816c-.31-.176-.465-.264-.604-.245-.139.019-.296.175-.61.488-1.216 1.213-3.228 1.213-4.444 0-.314-.313-.471-.47-.61-.488-.139-.019-.294.069-.604.245L4.89 3.498c-.316.18-.474.27-.529.4-.055.131.003.353.118.797.38 1.615-.836 3.112-2.462 3.551-.435.123-.653.184-.739.296-.086.112-.086.292-.086.652V10.798c0 .36 0 .54.086.653.086.112.304.173.739.296 1.626.438 2.842 1.935 2.462 3.55-.115.444-.173.666-.118.796.055.13.213.22.529.401l1.438.816c.31.176.465.264.604.245.139-.019.296-.175.61-.488 1.216-1.214 3.228-1.214 4.444 0 .314.313.471.469.61.488.139.019.294-.069.604-.245l1.438-.816c.316-.18.474-.27.529-.4.055-.131-.003-.353-.118-.797-.38-1.615.836-3.112 2.462-3.55z"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ChartIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M20.5 15.828C17.999 21.756 9.864 23.484 5.201 18.864.629 14.335 2.045 6.129 8.057 3.5"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M17.683 12.5c1.888 0 2.832 0 3.441-.845.024-.031.062-.088.082-.121.548-.887.266-1.568-.298-2.93a12.002 12.002 0 00-8.575-8.575c-1.362-.564-2.043-.846-2.93-.298-.033.02-.09.058-.121.082-.845.609-.845 1.553-.845 3.441v2.11c0 1.92 0 2.88.596 3.477.596.596 1.556.596 3.477.596h2.11z"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-
-function ShieldIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M10.125 14.5V8.5M12 8.5V7m0 9v-1.5m-1.875-2.5h3.75M13.875 11.5c.621 0 1.125.504 1.125 1.125v.75c0 .621-.504 1.125-1.125 1.125H9m4.875-3c.621 0 1.125-.496 1.125-1.125v-.75c0-.621-.504-1.125-1.125-1.125H9"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21 11.183V8.28c0-1.64 0-2.46-.404-2.995-.404-.535-1.318-.795-3.145-1.314a37.858 37.858 0 00-3.96-1.252C12.023 2.266 11.424 2 11 2c-.424 0-1.023.266-2.491.719a37.858 37.858 0 00-3.96 1.252c-1.827.519-2.741.779-3.145 1.314C1 5.82 1 6.64 1 8.28v2.903c0 5.625 5.063 8.998 7.594 10.335.607.32.91.48 1.406.48.495 0 .799-.16 1.406-.48C13.937 20.181 19 16.808 19 11.183z"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function MobileIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M5 9c0-3.3 0-4.95 1.025-5.975C7.05 2 8.7 2 12 2c3.3 0 4.95 0 5.975 1.025C19 4.05 19 5.7 19 9v6c0 3.3 0 4.95-1.025 5.975C16.95 22 15.3 22 12 22c-3.3 0-4.95 0-5.975-1.025C5 19.95 5 18.3 5 15V9z"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M11 19h2M9 2l.089.534C9.282 3.691 9.378 4.27 9.775 4.622c.414.368 1.001.38 2.225.38 1.224 0 1.811-.012 2.225-.38.397-.352.493-.931.686-2.088L15 2"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function RefinementIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M6.234 7C4.604 7 3.789 7 3.328 7.495c-.461.495-.36 1.262-.158 2.796.059.448.157.702.457 1.05.969 1.122 2.742 3.118 5.231 4.933.227.166.377.437.402.737.084.994.165 1.895.242 2.699.125 1.306.187 1.959.663 2.206.476.247 1.07-.069 2.258-.702l1.067-.565c.44-.234.66-.351.797-.549.136-.197.164-.435.22-.912.072-.615.148-1.335.226-2.174.028-.297.177-.565.403-.73 2.493-1.782 4.27-3.778 5.239-4.9.3-.348.398-.602.457-1.05.202-1.534.303-2.301-.158-2.796C20.211 7 19.396 7 17.766 7"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ToolIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M11.801 6.49L13.287 5.004c1.673-1.673 3.863-2.367 6.18-2.481.902-.044 1.353-.066 1.714.295.362.362.34.813.296 1.715-.114 2.318-.808 4.507-2.48 6.18l-1.486 1.486c-1.224 1.223-1.572 1.571-1.315 2.898.254 1.014.499 1.995-.238 2.732-.894.894-1.71.894-2.604 0l-7.183-7.183c-.894-.894-.894-1.71 0-2.604.737-.737 1.718-.492 2.732-.238 1.327.257 1.675-.092 2.898-1.315z"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17 7h.01M2.5 21.5l5-5M8.5 21.5l2-2M2.5 15.5l2-2"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function LayersIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 11.5c.496 0 .956-.302 1.878-.904l.665-.287c1.638-.706 2.457-1.059 2.457-1.614 0-.556-.819-.909-2.457-1.615l-.665-.286C12.956 6.302 12.496 6 12 6c-.496 0-.956.302-1.878.904l-.665.287c-1.638.706-2.457 1.059-2.457 1.614 0 .556.819.909 2.457 1.615l.665.286C11.044 11.198 11.504 11.5 12 11.5zM12 11.5V17.5"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17 9v6c0 .559-.819.912-2.457 1.618l-.665.287C12.956 17.302 12.496 17.5 12 17.5c-.496 0-.956-.198-1.878-.595l-.665-.287C7.819 15.912 7 15.559 7 15V9"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function GridIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M7 2v20M17 2v20M22 7H2M22 17H2"
-        stroke="#99E39E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function HeadsetIcon() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-      <path
-        d="M22.667 14.406c0-.461 0-.691.069-.896.202-.597.733-.829 1.266-1.071.598-.273.897-.41 1.194-.433.336-.028.674.045.961.206.382.214.648.621.92.952 1.258 1.528 1.887 2.292 2.117 3.134.186.68.186 1.391 0 2.071-.336 1.229-1.396 2.259-2.181 3.212-.401.488-.602.731-.855.874-.288.161-.625.234-.962.207-.296-.024-.598-.161-1.194-.433-.532-.243-1.064-.474-1.266-1.071-.069-.205-.069-.436-.069-.897v-5.655z"
-        stroke="#99E39E"
-        strokeWidth="2"
-      />
-      <path
-        d="M9.334 14.406c0-.58-.017-1.102-.487-1.51-.171-.148-.397-.251-.85-.457-.598-.273-.897-.41-1.193-.433-.89-.072-1.369.535-1.882 1.158-1.258 1.528-1.887 2.292-2.117 3.134a3.997 3.997 0 000 2.071c.336 1.229 1.396 2.257 2.181 3.212.495.601.968 1.149 1.817 1.08.296-.024.598-.161 1.194-.434.453-.206.679-.309.85-.457.469-.408.487-.93.487-1.51v-5.854z"
-        stroke="#99E39E"
-        strokeWidth="2"
-      />
-      <path
-        d="M6.667 12c0-4.418 4.179-8 9.333-8 5.155 0 9.333 3.582 9.333 8M25.333 22.667v1.066c0 2.357-2.388 4.267-5.333 4.267h-2.667"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function UsersIcon() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-      <path
-        d="M27.699 24c.999 0 1.794-.629 2.507-1.508C31.667 20.693 29.268 19.254 28.354 18.55c-.93-.716-1.968-1.122-3.021-1.217M24 14.667c1.841 0 3.333-1.493 3.333-3.334C27.333 9.492 25.841 8 24 8"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4.301 24c-1 0-1.795-.629-2.508-1.508C.333 20.693 2.731 19.254 3.646 18.55c.93-.716 1.968-1.122 3.02-1.217M7.333 14.667c-1.841 0-3.333-1.493-3.333-3.334C4 9.492 5.492 8 7.333 8"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M10.778 20.148C9.416 20.99 5.844 22.71 8.019 24.863c1.063 1.051 2.247 1.803 3.735 1.803h8.492c1.488 0 2.672-.752 3.735-1.803 2.176-2.153-1.396-3.873-2.758-4.715-3.195-1.976-7.249-1.976-10.445 0z"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M20.667 10c0 2.577-2.09 4.667-4.667 4.667-2.577 0-4.667-2.09-4.667-4.667C11.333 7.423 13.423 5.333 16 5.333c2.577 0 4.667 2.09 4.667 4.667z"
-        stroke="#99E39E"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function BookIcon() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-      <path
-        d="M8.777 9.65C12.786 10.357 15.176 11.836 16 12.685c.824-.849 3.214-2.328 7.223-3.035 2.031-.358 3.047-.537 3.912.15.865.686.865 1.6.865 3.829v7.01c0 2.038 0 3.057-.555 3.693-.555.636-1.777.852-4.222 1.283-2.177.384-3.878.996-5.109 1.611-1.211.605-1.817.908-2.114.908-.297 0-.903-.303-2.114-.908-1.231-.615-2.932-1.227-5.109-1.611-2.445-.431-3.667-.647-4.222-1.283C4 23.695 4 22.676 4 20.638v-7.009c0-2.229 0-3.143.865-3.83.865-.686 1.88-.507 3.912-.15z"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16 12v16.333"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.333 4.078C12.682 3.184 14.278 2.667 15.99 2.667c1.72 0 3.324.517 4.676 1.424m-2.504 3.242a5.374 5.374 0 00-2.172-.607c-.783 0-1.517.216-2.152.588"
-        stroke="#99E39E"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path
-        d="M12.5 2.048c-.789-.248-1.629-.381-2.5-.381-4.602 0-8.333 3.731-8.333 8.333 0 4.602 3.731 8.333 8.333 8.333 4.602 0 8.333-3.731 8.333-8.333 0-.871-.133-1.711-.381-2.5"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.083 7.917L10 10.833l7.5-8.333"
-        stroke="#99E39E"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
