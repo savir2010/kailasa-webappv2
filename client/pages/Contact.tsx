@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Mail } from "lucide-react";
+import { config } from "@/lib/config";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,12 +12,18 @@ export default function Contact() {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    // Clear status when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
   };
 
   const handleReset = () => {
@@ -26,13 +33,58 @@ export default function Contact() {
       phone: "",
       message: "",
     });
+    setSubmitStatus({ type: null, message: '' });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add form submission logic
-    console.log("Form submitted:", formData);
-    alert("Form submitted! This is a demo - no data was sent.");
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const apiUrl = config.contactApiUrl;
+      console.log('Submitting contact form to:', apiUrl);
+      console.log('Form data:', formData);
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Success response:', data);
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Thank you for contacting us! We will get back to you soon.' 
+      });
+      handleReset();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setSubmitStatus({ 
+        type: 'error', 
+        message: `Failed to send message: ${errorMessage}. Please try again later or contact us directly at support@kailasa.app` 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fadeInUp = {
@@ -124,19 +176,33 @@ export default function Contact() {
                   />
                 </div>
 
+                {submitStatus.type && (
+                  <div
+                    className={`p-4 rounded-xl ${
+                      submitStatus.type === 'success'
+                        ? 'bg-green-500/20 border border-green-500/50 text-green-400'
+                        : 'bg-red-500/20 border border-red-500/50 text-red-400'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+
                 <div className="flex gap-4">
                   <button
                     type="reset"
                     onClick={handleReset}
-                    className="px-8 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-colors font-clash-display font-semibold"
+                    disabled={isSubmitting}
+                    className="px-8 py-3 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 transition-colors font-clash-display font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Reset
                   </button>
                   <button
                     type="submit"
-                    className="px-8 py-3 bg-crypto-primary text-crypto-bg rounded-xl hover:bg-crypto-primary/90 transition-colors font-clash-display font-bold flex-1"
+                    disabled={isSubmitting}
+                    className="px-8 py-3 bg-crypto-primary text-crypto-bg rounded-xl hover:bg-crypto-primary/90 transition-colors font-clash-display font-bold flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </div>
               </form>

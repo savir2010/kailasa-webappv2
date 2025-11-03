@@ -5,18 +5,11 @@ import { Menu, X } from "lucide-react";
 function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2.5">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M6.353 7.765a16 16 0 0123.622-1.06l-5.132 4.609a8 8 0 00-12.559-3.549z"
-          fill="white"
-        />
-        <path
-          d="M30 24.661a16 16 0 01-23.648 1.228l5.308-4.425a8 8 0 0012.344 3.197z"
-          fill="white"
-        />
-        <path d="M14.782 16.285L6.261 22.99V9.58l8.521 6.705z" fill="#99E39E" />
-        <path d="M10.522 16.285L2 22.99V9.58l8.522 6.705z" fill="#99E39E" />
-      </svg>
+      <img 
+        src="/image.png" 
+        alt="Kailasa Logo" 
+        className="w-8 h-8 object-contain"
+      />
       <div className="flex flex-col">
         <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
           <text
@@ -93,9 +86,14 @@ export default function Header() {
           </button>
 
           {/* Desktop Login Button */}
-          <button className="hidden md:block bg-crypto-primary text-crypto-bg px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm md:text-base">
+          <a 
+            href="https://web.kailasa.app/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hidden md:block bg-crypto-primary text-crypto-bg px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm md:text-base text-center"
+          >
             Login
-          </button>
+          </a>
         </div>
       </div>
 
@@ -131,9 +129,14 @@ export default function Header() {
             >
               Contact Us
             </Link>
-            <button className="w-full bg-crypto-primary text-crypto-bg px-4 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm">
+            <a 
+              href="https://web.kailasa.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full bg-crypto-primary text-crypto-bg px-4 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm text-center block"
+            >
               Login
-            </button>
+            </a>
           </nav>
         </div>
       )}

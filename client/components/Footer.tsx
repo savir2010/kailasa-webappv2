@@ -1,20 +1,15 @@
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { config } from "@/lib/config";
 
 function Logo() {
   return (
     <div className="flex items-center gap-2.5">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <path
-          d="M6.353 7.765a16 16 0 0123.622-1.06l-5.132 4.609a8 8 0 00-12.559-3.549z"
-          fill="white"
-        />
-        <path
-          d="M30 24.661a16 16 0 01-23.648 1.228l5.308-4.425a8 8 0 0012.344 3.197z"
-          fill="white"
-        />
-        <path d="M14.782 16.285L6.261 22.99V9.58l8.521 6.705z" fill="#99E39E" />
-        <path d="M10.522 16.285L2 22.99V9.58l8.522 6.705z" fill="#99E39E" />
-      </svg>
+      <img 
+        src="/image.png" 
+        alt="Kailasa Logo" 
+        className="w-8 h-8 object-contain"
+      />
       <div className="flex flex-col">
         <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
           <text
@@ -35,6 +30,61 @@ function Logo() {
 }
 
 export default function Footer() {
+  const [newsletterData, setNewsletterData] = useState({
+    name: "",
+    email: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const apiUrl = config.subscriptionApiUrl;
+      console.log('Submitting newsletter subscription to:', apiUrl);
+      console.log('Newsletter data:', newsletterData);
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: newsletterData.name,
+          email: newsletterData.email,
+        }),
+      });
+
+      console.log('Newsletter response status:', response.status);
+      console.log('Newsletter response ok:', response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Newsletter error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Newsletter success response:', data);
+      setSubmitStatus({ 
+        type: 'success', 
+        message: 'Thank you for subscribing! You will receive our latest updates.' 
+      });
+      setNewsletterData({ name: "", email: "" });
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      setSubmitStatus({ 
+        type: 'error', 
+        message: `Failed to subscribe: ${errorMessage}. Please try again later.` 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <footer className="bg-crypto-bg border-t border-white/20">
       <div className="max-w-[1300px] mx-auto px-12 py-20">
@@ -68,8 +118,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-3">
                 <li><a href="/terms" className="text-base text-white/60 hover:text-white transition-colors">Terms & Conditions</a></li>
                 <li><a href="/privacy" className="text-base text-white/60 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="/faqs" className="text-base text-white/60 hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="/cookies" className="text-base text-white/60 hover:text-white transition-colors">Cookies</a></li>
+
               </ul>
             </div>
 
@@ -86,29 +135,47 @@ export default function Footer() {
         {/* Newsletter Section */}
         <div className="mb-12">
           <h3 className="text-xl font-medium mb-4">Subscribe to our newsletter</h3>
-          <form className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
             <div className="flex gap-2 w-full sm:w-auto">
               <input
                 type="text"
+                name="name"
                 placeholder="Enter your name"
+                value={newsletterData.name}
+                onChange={(e) => setNewsletterData({ ...newsletterData, name: e.target.value })}
                 className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors"
                 required
               />
               <div className="w-px bg-white/20"></div>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email address here"
+                value={newsletterData.email}
+                onChange={(e) => setNewsletterData({ ...newsletterData, email: e.target.value })}
                 className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors"
                 required
               />
             </div>
             <button
               type="submit"
-              className="flex items-center justify-center w-12 h-12 rounded-xl bg-white text-crypto-bg hover:bg-white/90 transition-colors"
+              disabled={isSubmitting}
+              className="flex items-center justify-center w-12 h-12 rounded-xl bg-white text-crypto-bg hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ArrowRight className="w-6 h-6" />
             </button>
           </form>
+          {submitStatus.type && (
+            <div
+              className={`mt-4 p-3 rounded-xl text-sm ${
+                submitStatus.type === 'success'
+                  ? 'bg-green-500/20 border border-green-500/50 text-green-400'
+                  : 'bg-red-500/20 border border-red-500/50 text-red-400'
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
         </div>
 
         {/* Bottom Section */}
