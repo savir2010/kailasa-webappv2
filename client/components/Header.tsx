@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 function Logo() {
   return (
@@ -35,11 +37,23 @@ function Logo() {
 }
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-crypto-primary-light backdrop-blur-md border-b border-white/10">
       <div className="max-w-[1300px] mx-auto px-4 sm:px-8 md:px-12 py-4 md:py-6 flex justify-between items-center">
         <div className="flex items-center gap-4 md:gap-8">
           <Logo />
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
               to="/"
@@ -67,11 +81,62 @@ export default function Header() {
             </Link>
           </nav>
         </div>
-        <button className="bg-crypto-primary text-crypto-bg px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm md:text-base">
-          Login
-        </button>
+
+        <div className="flex items-center gap-4">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-white p-2 hover:text-crypto-primary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+
+          {/* Desktop Login Button */}
+          <button className="hidden md:block bg-crypto-primary text-crypto-bg px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm md:text-base">
+            Login
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-crypto-primary-light backdrop-blur-md border-t border-white/10">
+          <nav className="max-w-[1300px] mx-auto px-4 sm:px-8 py-4 space-y-4">
+            <Link
+              to="/"
+              onClick={closeMenu}
+              className="block text-white text-base hover:text-crypto-primary transition-colors py-2"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={closeMenu}
+              className="block text-white text-base hover:text-crypto-primary transition-colors py-2"
+            >
+              About
+            </Link>
+            <Link
+              to="/blogs"
+              onClick={closeMenu}
+              className="block text-white text-base hover:text-crypto-primary transition-colors py-2"
+            >
+              Blogs
+            </Link>
+            <Link
+              to="/contact"
+              onClick={closeMenu}
+              className="block text-white text-base hover:text-crypto-primary transition-colors py-2"
+            >
+              Contact Us
+            </Link>
+            <button className="w-full bg-crypto-primary text-crypto-bg px-4 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors text-sm">
+              Login
+            </button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
-
