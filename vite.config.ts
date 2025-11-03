@@ -12,6 +12,8 @@ export default defineConfig(({ mode }) => ({
       allow: ["./client", "./shared", "./config"],
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
+    // Ensure Vite serves index.html for all routes (SPA routing)
+    middlewareMode: false,
   },
   build: {
     outDir: "dist/spa",
