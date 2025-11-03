@@ -44,7 +44,7 @@ export default function About() {
               {/* About Us Row */}
               <div className="flex flex-col lg:flex-row items-start gap-8">
                 <div className="w-full lg:w-1/2">
-                  <div className="text-[40px] md:text-[56px] font-medium mb-6">About Us</div>
+                  <div className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-6">About Us</div>
                   <p className="text-base md:text-lg text-white/90 leading-relaxed">
                     At "Kailasa," we are revolutionizing how you seek guidance and support. Our mission is to empower 
                     individuals with a personalized, supreme intelligence that adapts to your unique needs and goals. 
@@ -68,7 +68,7 @@ export default function About() {
               {/* Mission and Vision Row */}
               <div className="flex flex-col lg:flex-row gap-8">
                 <div className="w-full lg:w-1/2">
-                  <div className="text-[40px] md:text-[56px] font-medium mb-6">Mission</div>
+                  <div className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-6">Mission</div>
                   <p className="text-base md:text-lg text-white/90 leading-relaxed">
                     At "Kailasa," our mission is to empower individuals to overcome personal challenges and achieve their 
                     aspirations with clarity and confidence. By offering both subjective and objective advice, we ensure a 
@@ -78,7 +78,7 @@ export default function About() {
                   </p>
                 </div>
                 <div className="w-full lg:w-1/2">
-                  <div className="text-[40px] md:text-[56px] font-medium mb-6">Vision</div>
+                  <div className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-6">Vision</div>
                   <p className="text-base md:text-lg text-white/90 leading-relaxed">
                     At "Kailasa," our vision is to redefine how individuals achieve personal growth, harmony, and success. 
                     We aim to be the trusted, confidential intelligence in your pocket, offering personalized and custom advice 
@@ -108,7 +108,7 @@ export default function About() {
                 />
               </div>
               <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                <div className="text-[40px] md:text-[56px] font-medium mb-6">Founder Message</div>
+                <div className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-6">Founder Message</div>
                 <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
                   <p>
                     Hi, I'm the founder of "Kailasa," and I'm thrilled to connect with you. Our mission is to help 
@@ -149,7 +149,7 @@ export default function About() {
           >
             <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
               <div className="w-full lg:w-1/2">
-                <div className="text-[40px] md:text-[56px] font-medium mb-6">Co-Founder Message</div>
+                <div className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-6">Co-Founder Message</div>
                 <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
                   <p>
                     Hey! I'm one of the founding engineers of "Kailasa", and we built this because we know how tough 

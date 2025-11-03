@@ -111,13 +111,13 @@ export default function Index() {
           <motion.div className="w-full max-w-[588px]" {...fadeInUp}>
             <div className="flex flex-col gap-6 md:gap-10">
               <div className="flex flex-col gap-3">
-                <span className="inline-flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-white/10 bg-crypto-primary-light text-crypto-primary text-sm md:text-base w-fit">
+                <span className="inline-flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-white/10 bg-crypto-primary-light text-crypto-primary text-base md:text-lg w-fit">
                   Future of crypto trading
                 </span>
-                <h1 className="text-[32px] sm:text-[48px] md:text-[72px] leading-[120%] font-medium tracking-tight text-white">
+                <h1 className="font-great-victorian text-[40px] sm:text-[56px] md:text-[84px] leading-[120%] font-medium tracking-tight text-white">
                   <Typewriter lines={["Fast and Secure", "Cryptocurrency", "Exchange"]} />
                 </h1>
-                <p className="text-sm md:text-base leading-[140%] text-white">
+                <p className="text-base md:text-lg leading-[140%] text-white">
                   Trade cryptocurrencies with ease, security, and advanced
                   features on our cutting-edge platform.
                 </p>
@@ -155,7 +155,7 @@ export default function Index() {
               <div className="flex flex-col items-center gap-3">
                 <p className="text-base md:text-lg">
                 </p>
-                <h2 className="text-[28px] sm:text-[40px] md:text-[56px] leading-[120%] font-medium tracking-tight text-center md:text-left">
+                <h2 className="font-great-victorian text-[36px] sm:text-[48px] md:text-[64px] leading-[120%] font-medium tracking-tight text-center md:text-left">
                   Turn your wishes into reality with Kailasa
                 </h2>
               </div>
@@ -164,15 +164,15 @@ export default function Index() {
                 <Feature
                   icon={<LinkIcon className="w-5 h-5 text-crypto-primary" />}
                   text="Connect your mind, body, and energy through AI"
-                  />
+                />
                 <Feature
                   icon={<LightningIcon className="w-5 h-5 text-crypto-primary" />}
                   text="Unlock your potential and accelerate growth"
-                  />
+                />
                 <Feature
                   icon={<SettingsIcon className="w-5 h-5 text-crypto-primary" />}
                   text="Personalize your path to balance and fulfillment"
-                  />
+                />
                 <Feature
                     icon={<Heart className="w-5 h-5 text-crypto-primary" />}
                     text="Align your emotions, purpose, and daily actions"
@@ -205,10 +205,10 @@ export default function Index() {
               className="flex flex-col items-center gap-1 py-8 md:py-12 px-3 md:px-6 rounded-2xl border border-white/10 bg-white/5"
               {...fadeInUp}
             >
-              <div className="text-[24px] md:text-[32px] leading-[120%] font-medium text-crypto-primary">
+              <div className="text-[32px] md:text-[40px] leading-[120%] font-medium text-crypto-primary">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base text-white/80 text-center">{stat.label}</div>
+              <div className="text-base md:text-lg text-white/80 text-center">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -219,7 +219,7 @@ export default function Index() {
         <motion.div className="flex flex-col items-center gap-6 md:gap-10" {...fadeInUp}>
           <div className="flex flex-col items-center gap-3 text-center">
             <br className="hidden md:block" /><br className="hidden md:block" />
-            <h2 className="text-[24px] sm:text-[32px] md:text-[40px] leading-[120%] font-medium tracking-tight max-w-3xl px-4">
+            <h2 className="font-great-victorian text-[32px] sm:text-[40px] md:text-[48px] leading-[120%] font-medium tracking-tight max-w-3xl px-4">
               One application with multiple options to give you freedom of
               buying & selling
             </h2>
@@ -239,10 +239,10 @@ export default function Index() {
         <div className="flex justify-center">
           <div className="w-full max-w-[1200px] p-8 md:p-16 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl flex flex-col items-center gap-6 md:gap-8">
             <div className="flex flex-col gap-3 text-center">
-              <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+              <h2 className="font-great-victorian text-[36px] sm:text-[44px] md:text-[48px] leading-[120%] font-medium tracking-tight">
               Available <span className="text-crypto-primary">Everywhere</span>
               </h2>
-              <p className="text-sm md:text-base text-white/60 px-4">
+              <p className="text-base md:text-lg text-white/60 px-4">
               Whether you're on Android, iOS, or Web, Kailasa Supreme Intelligence syncs seamlessly across devices to guide you wherever you go.
 
               </p>
@@ -306,9 +306,9 @@ export default function Index() {
                   Crypto landing page{" "}
                   <span className="text-crypto-primary">template</span>
                 </p> */}
-                <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+                <h2 className="font-great-victorian text-[36px] sm:text-[44px] md:text-[48px] leading-[120%] font-medium tracking-tight">
                 Hyperpersonalize your AI experience                </h2>
-                <p className="text-sm md:text-base text-white/60">
+                <p className="text-base md:text-lg text-white/60">
                 Seamlessly integrates with your favorite apps to understand your context and deliver smarter, tailored insights.
                 </p>
               </div>
@@ -323,7 +323,7 @@ export default function Index() {
                     <div className="flex p-3 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm">
                       {item.icon}
                     </div>
-                    <p className="text-lg md:text-xl font-medium">{item.text}</p>
+                    <p className="text-xl md:text-2xl font-medium">{item.text}</p>
                   </div>
                 ))}
               </div>
@@ -339,10 +339,10 @@ export default function Index() {
             <div className="flex flex-col gap-6 md:gap-10">
               <div className="flex flex-col gap-3 text-center lg:text-left">
 
-                <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight">
+                <h2 className="font-great-victorian text-[36px] sm:text-[44px] md:text-[48px] leading-[120%] font-medium tracking-tight">
                   Upgrade your Mental Health
                 </h2>
-                <p className="text-sm md:text-base text-white/60">
+                <p className="text-base md:text-lg text-white/60">
                   Get faster, safer, more affordable cloud object storage with
                   no centeral point of failure.
                 </p>
@@ -358,7 +358,7 @@ export default function Index() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
                       <CheckIcon className="w-5 h-5 text-crypto-primary" />
-                      <p className="text-base font-medium">{item}</p>
+                      <p className="text-lg font-medium">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -371,7 +371,7 @@ export default function Index() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
                       <CheckIcon className="w-5 h-5 text-crypto-primary" />
-                      <p className="text-base font-medium">{item}</p>
+                      <p className="text-lg font-medium">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -426,18 +426,18 @@ function Logo() {
         <path d="M10.522 16.285L2 22.99V9.58l8.522 6.705z" fill="#99E39E" />
       </svg>
       <div className="flex flex-col">
-        <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
-          <text
-            x="0"
-            y="24"
-            fill="white"
-            fontSize="24"
-            fontWeight="500"
-            fontFamily="DM Sans"
-          >
+      <svg width="93" height="32" viewBox="0 0 93 32" fill="none">
+        <text
+          x="0"
+          y="24"
+          fill="white"
+          fontSize="24"
+          fontWeight="500"
+          fontFamily="DM Sans"
+        >
             Kailasa
-          </text>
-        </svg>
+        </text>
+      </svg>
         <p className="text-xs text-white/60 font-normal mt-0.5">Supreme Intelligence</p>
       </div>
     </div>
@@ -450,7 +450,7 @@ function Feature({ icon, text }: { icon: React.ReactNode; text: string }) {
       <div className="flex p-2 md:p-2.5 items-center justify-center rounded-full bg-white/10 shrink-0">
         {icon}
       </div>
-      <p className="text-sm md:text-lg font-medium max-w-[200px]">{text}</p>
+      <p className="text-base md:text-xl font-medium max-w-[200px]">{text}</p>
     </div>
   );
 }
@@ -528,14 +528,14 @@ function PortfolioCard() {
           <div className="text-center">
             <div className="text-[48px] md:text-[56px] lg:text-[72px] font-bold leading-none mb-2 text-white">
               72%
-            </div>
+              </div>
             <div className="text-base md:text-lg leading-tight text-white/80">
               <div>of reported</div>
               <div>goals on Kailasa</div>
               <div>are completed</div>
+              </div>
             </div>
-          </div>
-        </div>
+            </div>
       </div>
     </div>
   );
@@ -603,10 +603,10 @@ function FeaturedCoins() {
       transition={{ duration: 0.8 }}
     >
       <div className="flex flex-col items-center gap-6 md:gap-10">
-        <p className="text-sm md:text-base text-center">
+        <p className="text-base md:text-lg text-center">
           Featured <span className="text-crypto-primary">crypto coins</span>
         </p>
-        <h2 className="text-[28px] sm:text-[36px] md:text-[40px] leading-[120%] font-medium tracking-tight text-center px-4">
+        <h2 className="font-great-victorian text-[36px] sm:text-[44px] md:text-[48px] leading-[120%] font-medium tracking-tight text-center px-4">
           Guided by our 3 supremes
         </h2>
 
@@ -654,16 +654,16 @@ function FeaturedCoins() {
                     {/* Text section (takes remaining 60%) */}
                     <div className="flex flex-col flex-[0.6] justify-between px-6 pb-6 text-white">
                       <div className="text-center">
-                        <h3 className="text-3xl font-bold mb-2">{supreme.name}</h3>
+                        <h3 className="font-clash-display text-4xl font-bold mb-2">{supreme.name}</h3>
                         <div className="w-16 h-0.5 bg-white/50 mx-auto mb-3"></div>
-                        <h4 className="text-lg font-semibold">{supreme.subtitle}</h4>
+                        <h4 className="font-clash-display text-xl font-normal">{supreme.subtitle}</h4>
                       </div>
 
-                      <p className="text-sm text-white/90 mt-3 leading-snug text-center">
+                      <p className="text-base text-white/90 mt-3 leading-snug text-center">
                         {supreme.description}
                       </p>
 
-                      <ul className="mt-3 space-y-1 text-left text-sm text-white/90">
+                      <ul className="mt-3 space-y-1 text-left text-base text-white/90">
                         {supreme.features.map((feature, idx) => (
                           <li key={idx} className="flex gap-1.5">
                             <span className="font-semibold">{idx + 1}.</span>
@@ -672,7 +672,7 @@ function FeaturedCoins() {
                         ))}
                       </ul>
 
-                      <p className="text-xs text-white/80 mt-4 text-center leading-tight">
+                      <p className="text-sm text-white/80 mt-4 text-center leading-tight">
                         {supreme.footer}
                       </p>
                     </div>
@@ -711,17 +711,17 @@ function FeaturedCoins() {
                   alt={supreme.name}
                   className="w-full h-48 object-contain rounded-2xl shadow-2xl"
                 />
-              </div>
+        </div>
               <div className="flex flex-col gap-4 px-6 pb-6 text-white">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2">{supreme.name}</h3>
+                  <h3 className="font-clash-display text-3xl font-bold mb-2">{supreme.name}</h3>
                   <div className="w-16 h-0.5 bg-white/50 mx-auto mb-3"></div>
-                  <h4 className="text-base font-semibold">{supreme.subtitle}</h4>
+                  <h4 className="font-clash-display text-lg font-normal">{supreme.subtitle}</h4>
                 </div>
-                <p className="text-sm text-white/90 leading-snug text-center">
+                <p className="text-base text-white/90 leading-snug text-center">
                   {supreme.description}
                 </p>
-                <ul className="space-y-1 text-left text-sm text-white/90">
+                <ul className="space-y-1 text-left text-base text-white/90">
                   {supreme.features.map((feature, idx) => (
                     <li key={idx} className="flex gap-1.5">
                       <span className="font-semibold">{idx + 1}.</span>
@@ -838,7 +838,7 @@ function OneApplicationGraphic() {
                   <div className="flex p-2 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 shrink-0">
                     {circle.icon}
                   </div>
-                  <h3 className="text-base font-medium">
+                  <h3 className="font-great-victorian text-base font-medium">
                     {circle.title}
                   </h3>
                 </div>
@@ -937,8 +937,8 @@ function CryptoCardsGraphic() {
             className="w-16 h-16 object-contain"
           />
           <p className="text-xl font-medium text-center">{app.name}</p>
-        </div>
-      ))}
+            </div>
+          ))}
     </div>
   );
 }
@@ -1026,16 +1026,16 @@ function ChartCardsGraphic() {
         >
           {/* Progress line */}
           {points.length > 1 && (
-            <path
+      <path
               d={pathData}
               fill="none"
-              stroke="#99E39E"
+        stroke="#99E39E"
               strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
           )}
-        </svg>
+    </svg>
       </div>
     </div>
   );

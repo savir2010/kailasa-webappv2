@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @@include('meta.html', { "title": "Discover Fu Shen: The Supreme of Happiness and Harmonious Relationships" })
+    <link rel="stylesheet" href="@@webRoot/css/blogs.min.css">
+</head>
+
+<body>
+    @@include('bg_img.html')
+    <div class="main-cont">
+        @@include('header.html', { "active": "blog" })
+        <div class="panel">
+            <div class="blog full">
+                <div class="full-blog-header">
+                    <a href="../blogs.html"><button><span class="back-chevron">&lsaquo;</span> Back</button></a>
+
+                    <!-- You can make changes below this point,
+                     1. Only replace the text starting with ENTER_..._HERE
+                     2. copy the section tags to add a new section 
+                     3. create a new p tag inside the section tag to add a new paragraph, you can also add any html tags inside section and style them as per your needs -->
+                    <div style="margin:0;" class="blog-info-cont-parent">
+                        <div class="blog-info">
+                            <img class="blog-info-icon" alt="" src="../images/calendar-dots.svg">
+                            <div class="blog-info-cont">
+                                <div class="info-label">Publish Date</div>
+                                <div class="info-value">ENTER_PUBLISH_DATE_HERE</div>
+                            </div>
+                        </div>
+                        <div class="blog-info">
+                            <img class="blog-info-icon" alt="" src="../images/clock.svg">
+                            <div class="blog-info-cont">
+                                <div class="info-label">Read time</div>
+                                <div class="info-value">ENTER_READ_TIME_HERE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-data-cont">
+                    <p class="latest-blog-title">ENTER_BLOG_TITLE_HERE</p>
+                    <img class="blog-img" src="ENTER_IMAGE_PATH_HERE"></img>
+                    <div class="description">
+                        <section>
+                            <p>ENTER_SECTION_TITLE_HERE</p>
+                            <p>ENTER_SECTION_PARAGRAPH_HERE</p>
+                            <p>ENTER_SECTION_PARAGRAPH_HERE</p>
+                        </section>
+                    </div>
+                </div>
+                <!-- Don't change anything beyond this point -->
+                <div class="full-blog-footer">
+                    <a href="../blogs.html"><button><span class="back-chevron">&lsaquo;</span> Back</button></a>
+                    <a class="goto-top-btn" href="#top"><b>Go to Top ↑</b></a>
+                </div>
+            </div>
+        </div>
+
+        @@include('store_links.html')
+
+        @@include('footer.html', { "active": "blog" })
+    </div>
+
+    @@include('script.html')
+</body>
+
+</html>

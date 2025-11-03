@@ -2,6 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font Face Definitions */
+@font-face {
+  font-family: 'GreatVictorian';
+  src: url('/fonts/GreatVictorian-Standard.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GreatVictorian';
+  src: url('/fonts/GreatVictorian-Swashed.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+  font-variant: swash;
+}
+
+@font-face {
+  font-family: 'GreatVictorian';
+  src: url('/fonts/GreatVictorian-SwashedSC.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+  font-variant: small-caps;
+}
+
+/* Clash Display Regular */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Regular.eot');
+  src: url('/fonts/ClashDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Regular.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Regular.woff') format('woff'),
+       url('/fonts/ClashDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Clash Display Light */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Light.eot');
+  src: url('/fonts/ClashDisplay-Light.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Light.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Light.woff') format('woff'),
+       url('/fonts/ClashDisplay-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Clash Display Medium */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Medium.eot');
+  src: url('/fonts/ClashDisplay-Medium.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Medium.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Medium.woff') format('woff'),
+       url('/fonts/ClashDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Clash Display Semibold */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Semibold.eot');
+  src: url('/fonts/ClashDisplay-Semibold.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Semibold.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Semibold.woff') format('woff'),
+       url('/fonts/ClashDisplay-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Clash Display Bold */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Bold.eot');
+  src: url('/fonts/ClashDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Bold.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Bold.woff') format('woff'),
+       url('/fonts/ClashDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Clash Display Variable */
+@font-face {
+  font-family: 'Clash Display Variable';
+  src: url('/fonts/ClashDisplay-Variable.eot');
+  src: url('/fonts/ClashDisplay-Variable.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Variable.woff') format('woff'),
+       url('/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --background: 0 5% 3%;
@@ -63,6 +159,7 @@
   body {
     @apply bg-[#000510] text-white;
     font-family:
+      "Clash Display",
       "DM Sans",
       -apple-system,
       Roboto,

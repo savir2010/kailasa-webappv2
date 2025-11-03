@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Kailasa: A Digital Journey to Transformation",
+    "subtitle": "",
+    "image_url": "./top-mountain-view-2.webp",
+    "description": "In the fast-paced digital age, where solutions are sought at the tap of a screen, the <b>Kailasa: Supreme Intelligence</b> emerged as a beacon of hope and enlightenment. Unlike any other app, it housed three revolutionary Supremes designed to guide users through life’s complexities: <ul><li><b>Kubera</b>, the Supreme of Wealth & Finances;</li><li><b>Dhani</b>, the Supreme of Health & Medicine and </li><li><b>FuShen</b>, the Supreme of Happiness and Relationships.</li></ul>",
+    "publish_date": "January 28, 2025",
+    "read_time": "5 minutes",
+    "blog_url": "./blogs/blog_1.html"
+  },
+  {
+    "title": "Dhani - The AI Wellness Guide for Mind & Body Healing",
+    "subtitle": "Who is Dhani?",
+    "image_url": "./images/Dhani.webp",
+    "description": "In a world where stress has become the norm, people actively seek ways to improve their mental, emotional, and physical well-being. Enter Dhani.",
+    "publish_date": "June 11, 2025",
+    "read_time": "5 minutes",
+    "blog_url": "./blogs/blog_6.html"
+  },
+  {
+    "title": "Kubera - Boost Wealth with AI-Powered Financial Wisdom",
+    "subtitle": "Who is Kubera?",
+    "image_url": "./images/Kubera.webp",
+    "description": "In today’s fast-paced world, managing finances can be stressful, confusing, and even overwhelming. Enter Kubera.",
+    "publish_date": "June 11, 2025",
+    "read_time": "5 minutes",
+    "blog_url": "./blogs/blog_10.html"
+  },
+  {
+    "title": "Fu Shen - Find Joy and Build Meaningful Relationships with AI",
+    "subtitle": "Who is Fu Shen?",
+    "image_url": "./images/Feshen.webp",
+    "description": "In an age of disconnection and digital fatigue, meaningful relationships and personal happiness often take a backseat. Enter Fu Shen.",
+    "publish_date": "June 11, 2025",
+    "read_time": "5 minutes",
+    "blog_url": "./blogs/blog_8.html"
+  }
+]

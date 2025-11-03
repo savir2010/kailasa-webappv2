@@ -15,6 +15,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["DM Sans", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
+        'great-victorian': ['GreatVictorian', 'serif'],
+        'clash-display': ['Clash Display', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

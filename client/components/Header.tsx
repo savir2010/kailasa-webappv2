@@ -23,12 +23,12 @@ function Logo() {
             fill="white"
             fontSize="24"
             fontWeight="500"
-            fontFamily="DM Sans"
+            fontFamily="Clash Display"
           >
             Kailasa
           </text>
         </svg>
-        <p className="text-xs text-white/60 font-normal mt-0.5">Supreme Intelligence</p>
+        <p className="font-clash-display text-xs text-white/60 font-normal mt-0.5">Supreme Intelligence</p>
       </div>
     </Link>
   );
@@ -54,19 +54,13 @@ export default function Header() {
               About
             </Link>
             <Link
-              to="#"
+              to="/blogs"
               className="text-white text-base hover:text-crypto-primary transition-colors"
             >
               Blogs
             </Link>
             <Link
-              to="#"
-              className="text-white text-base hover:text-crypto-primary transition-colors"
-            >
-              Careers
-            </Link>
-            <Link
-              to="#"
+              to="/contact"
               className="text-white text-base hover:text-crypto-primary transition-colors"
             >
               Contact Us

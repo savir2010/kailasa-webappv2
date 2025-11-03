@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "title": "Gen-AI Developer Internship",
+      "type": "Unpaid Internship",
+      "duration": "3 to 6 months",
+      "location": "Remote/Hybrid",
+      "description": "Build prototypes and internal tools using LLMs (OpenAI, Claude, open-source models, etc.). Train and fine-tune AI models using Python, LangChain, HuggingFace, or similar frameworks.",
+      "requirements": [
+        "Recent college graduate or final year student",
+        "Experience with Python and AI/ML frameworks",
+        "Knowledge of LLMs and prompt engineering",
+        "Passion for AI and startup environment"
+      ],
+      "responsibilities": [
+        "Build prototypes and internal tools using LLMs",
+        "Train and fine-tune AI models",
+        "Explore multimodal AI integrations",
+        "Create and test prompt engineering strategies",
+        "Contribute to product development and documentation"
+      ],
+      "benefits": [
+        "Real-world learning with Gen-AI systems",
+        "Mentorship from experienced AI engineers",
+        "Certificate and LinkedIn recommendation",
+        "Potential offer for paid roles"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Full Stack & DevOps Intern",
+      "type": "Unpaid Internship",
+      "duration": "3 to 6 months",
+      "location": "Remote/Hybrid",
+      "description": "Build and maintain full-stack web applications and work with cloud infrastructure. Get hands-on experience with real Gen-AI systems and modern DevOps practices.",
+      "requirements": [
+        "Final year student or recent college graduate",
+        "Experience with React.js, Node.js, or Python",
+        "Basic knowledge of cloud platforms (AWS, GCP)",
+        "Familiarity with Git and CI/CD concepts"
+      ],
+      "responsibilities": [
+        "Build full-stack web applications using React.js, Node.js, or Python",
+        "Design APIs and integrate with Gen-AI services",
+        "Automate CI/CD pipelines using GitHub Actions and Docker",
+        "Configure cloud infrastructure on AWS, GCP, or Render",
+        "Work with Linux systems and container orchestration"
+      ],
+      "benefits": [
+        "Hands-on experience with real infrastructure",
+        "Learn modern DevOps practices",
+        "Mentorship from seasoned engineers",
+        "Certificate and reference letter",
+        "Priority for future paid roles"
+      ]
+    }
+  ]
