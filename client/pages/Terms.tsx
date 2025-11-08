@@ -14,115 +14,249 @@ export default function Terms() {
   return (
     <div className="min-h-screen bg-crypto-bg text-white overflow-x-hidden relative">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 z-0"
-        style={{ 
-          backgroundImage: 'url(/BG21_2.webp)',
-          backgroundAttachment: 'scroll',
-          backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '100% auto'
+        style={{
+          backgroundImage: "url(/BG21_2.webp)",
+          backgroundAttachment: "scroll",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% auto",
         }}
       />
       <div className="relative z-10">
         <Header />
 
-        <section className="relative pt-32 pb-12 md:pb-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
-          <div className="w-full bg-white/5 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10">
-            <h1 id="top" className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-8">
-              Terms of Service
-            </h1>
+        <section className="relative pt-32 pb-20 px-4 sm:px-8 md:px-12">
+          <div className="max-w-[1100px] mx-auto">
+            <button
+              onClick={scrollToTop}
+              className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-colors text-2xl font-semibold fixed bottom-8 right-8 z-30"
+              aria-label="Go to top"
+            >
+              ↑
+            </button>
 
-            <div className="prose prose-invert max-w-none">
-              <div className="mb-8">
-                <a href="#welcome" className="text-crypto-primary hover:text-crypto-primary/80 transition-colors text-lg font-medium">
-                  Welcome to Kailasa!
-                </a>
+            <div className="w-full bg-white/10 backdrop-blur-[18px] rounded-3xl border border-white/15 p-6 sm:p-10 md:p-12 shadow-[0_25px_60px_rgba(5,10,39,0.45)]">
+              <div className="flex flex-col gap-3">
+                <h1
+                  id="top"
+                  className="font-great-victorian text-[38px] sm:text-[46px] md:text-[56px] font-medium tracking-tight"
+                >
+                  Terms of Service
+                </h1>
               </div>
 
-              <div className="mb-8">
-                <ol className="list-decimal list-inside space-y-2 text-white/90">
-                  <li><a href="#services" className="text-crypto-primary hover:underline">OUR SERVICES</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#medical-disclaimer" className="text-crypto-primary hover:underline">Medical disclaimer</a></li>
-                      <li><a href="#emergencies" className="text-crypto-primary hover:underline">Emergencies</a></li>
-                      <li><a href="#modifications" className="text-crypto-primary hover:underline">Modifications to the Services</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#membership" className="text-crypto-primary hover:underline">MEMBERSHIP & SUBSCRIPTIONS</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#becoming-member" className="text-crypto-primary hover:underline">Becoming a member</a></li>
-                      <li><a href="#once-member" className="text-crypto-primary hover:underline">Once a member</a></li>
-                      <li><a href="#your-membership" className="text-crypto-primary hover:underline">Your membership</a></li>
-                      <li><a href="#subscriptions" className="text-crypto-primary hover:underline">Subscriptions</a></li>
-                      <li><a href="#device-requirements" className="text-crypto-primary hover:underline">Device Requirements</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#cancellation" className="text-crypto-primary hover:underline">CANCELLATION OF SERVICES</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#cancel-you" className="text-crypto-primary hover:underline">Cancellation by you</a></li>
-                      <li><a href="#cancel-us" className="text-crypto-primary hover:underline">Cancellation by us</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#storage" className="text-crypto-primary hover:underline">GENERAL PRACTICES REGARDING USE AND STORAGE</a></li>
-                  <li><a href="#mobile" className="text-crypto-primary hover:underline">MOBILE SERVICES</a></li>
-                  <li><a href="#conditions" className="text-crypto-primary hover:underline">CONDITIONS OF USE</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#user-conduct" className="text-crypto-primary hover:underline">User Conduct</a></li>
-                      <li><a href="#international-use" className="text-crypto-primary hover:underline">Special notice for international use; Export controls</a></li>
-                      <li><a href="#commercial-use" className="text-crypto-primary hover:underline">Commercial use</a></li>
-                      <li><a href="#minors" className="text-crypto-primary hover:underline">Use of Kailasa by minors</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#app-stores" className="text-crypto-primary hover:underline">APPLE APP STORE AND GOOGLE PLAY STORE LEGAL INFORMATION</a></li>
-                  <li><a href="#intellectual" className="text-crypto-primary hover:underline">INTELLECTUAL PROPERTY RIGHTS</a></li>
-                  <li><a href="#third-party" className="text-crypto-primary hover:underline">THIRD PARTY WEBSITES</a></li>
-                  <li><a href="#social" className="text-crypto-primary hover:underline">SOCIAL NETWORKING SERVICES</a></li>
-                  <li><a href="#warranty" className="text-crypto-primary hover:underline">WARRANTY, INDEMNITY AND LIABILITY</a></li>
-                  <li><a href="#dispute" className="text-crypto-primary hover:underline">DISPUTE RESOLUTION BY BINDING ARBITRATION</a></li>
-                  <li><a href="#general" className="text-crypto-primary hover:underline">GENERAL CONDITIONS</a></li>
-                  <li><a href="#privacy" className="text-crypto-primary hover:underline">YOUR PRIVACY</a></li>
-                </ol>
+              <div className="mt-8 border border-white/10 rounded-2xl bg-white/5">
+                <div className="px-6 sm:px-8 py-6 border-b border-white/10">
+                  <a
+                    href="#welcome"
+                    className="inline-flex items-center text-lg font-semibold text-crypto-primary hover:text-crypto-primary/80 transition-colors"
+                  >
+                    Welcome to Kailasa!
+                  </a>
+                </div>
+
+                <div className="px-6 sm:px-8 py-6">
+                  <ol className="list-decimal list-inside text-white/90 space-y-4 text-base sm:text-lg leading-relaxed">
+                    <li>
+                      <a href="#services" className="text-crypto-primary hover:underline">
+                        OUR SERVICES
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#medical-disclaimer" className="text-crypto-primary hover:underline">
+                            Medical disclaimer
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#emergencies" className="text-crypto-primary hover:underline">
+                            Emergencies
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#modifications" className="text-crypto-primary hover:underline">
+                            Modifications to the Services
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#membership" className="text-crypto-primary hover:underline">
+                        MEMBERSHIP & SUBSCRIPTIONS
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#becoming-member" className="text-crypto-primary hover:underline">
+                            Becoming a member
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#once-member" className="text-crypto-primary hover:underline">
+                            Once a member
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#your-membership" className="text-crypto-primary hover:underline">
+                            Your membership
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#subscriptions" className="text-crypto-primary hover:underline">
+                            Subscriptions
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#device-requirements" className="text-crypto-primary hover:underline">
+                            Device Requirements
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#cancellation" className="text-crypto-primary hover:underline">
+                        CANCELLATION OF SERVICES
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#cancel-you" className="text-crypto-primary hover:underline">
+                            Cancellation by you
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#cancel-us" className="text-crypto-primary hover:underline">
+                            Cancellation by us
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#storage" className="text-crypto-primary hover:underline">
+                        GENERAL PRACTICES REGARDING USE AND STORAGE
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#mobile" className="text-crypto-primary hover:underline">
+                        MOBILE SERVICES
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#conditions" className="text-crypto-primary hover:underline">
+                        CONDITIONS OF USE
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#user-conduct" className="text-crypto-primary hover:underline">
+                            User Conduct
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#international-use" className="text-crypto-primary hover:underline">
+                            Special notice for international use; Export controls
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#commercial-use" className="text-crypto-primary hover:underline">
+                            Commercial use
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#minors" className="text-crypto-primary hover:underline">
+                            Use of Kailasa by minors
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#app-stores" className="text-crypto-primary hover:underline">
+                        APPLE APP STORE AND GOOGLE PLAY STORE LEGAL INFORMATION
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#intellectual" className="text-crypto-primary hover:underline">
+                        INTELLECTUAL PROPERTY RIGHTS
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#third-party" className="text-crypto-primary hover:underline">
+                        THIRD PARTY WEBSITES
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#social" className="text-crypto-primary hover:underline">
+                        SOCIAL NETWORKING SERVICES
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#warranty" className="text-crypto-primary hover:underline">
+                        WARRANTY, INDEMNITY AND LIABILITY
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#dispute" className="text-crypto-primary hover:underline">
+                        DISPUTE RESOLUTION BY BINDING ARBITRATION
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#general" className="text-crypto-primary hover:underline">
+                        GENERAL CONDITIONS
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#privacy" className="text-crypto-primary hover:underline">
+                        YOUR PRIVACY
+                      </a>
+                    </li>
+                  </ol>
+                </div>
               </div>
 
-              <div className="space-y-6 text-white/90 leading-relaxed">
+              <div className="space-y-10 sm:space-y-12 text-white/90 leading-relaxed text-base sm:text-lg mt-10">
                 <div id="welcome">
-                  <h2 className="font-great-victorian text-2xl md:text-3xl font-medium mb-4 mt-8">Welcome to Kailasa!</h2>
+                  <p className="text-2xl md:text-[28px] font-great-victorian font-medium text-white mb-4">
+                    Welcome to Kailasa!
+                  </p>
                   <p className="mb-4">
-                    We're so happy to have you here. These Terms of Service ("Terms") govern your use of
-                    Kailasa and the software, content, and services (collectively, "Services") offered through our website,
-                    <a href="https://kailasa.app" className="text-crypto-primary hover:underline"> kailasa.app</a> and its subdomains (the
-                    "Website"), our mobile apps Kailasa for Android and Kailasa for iOS (the "Apps").
+                    We're so happy to have you here. These Terms of Service ("Terms") govern your use of Kailasa and the
+                    software, content, and services (collectively, "Services") offered through our website,
+                    <a href="https://kailasa.app" className="text-crypto-primary hover:underline">
+                      {" "}
+                      kailasa.app
+                    </a>{" "}
+                    and its subdomains (the "Website"), our mobile apps Kailasa for Android and Kailasa for iOS (the "Apps").
                   </p>
                   <p className="mb-4">Please read these terms carefully before you start using the Services.</p>
                   <p className="mb-4">
-                    The terms "Kailasa," "us," or "we" refer to IGURU INNOVATIONS LLC, a software company that designed and
-                    built Kailasa, incorporated in California, and operating in San Francisco, CA.
+                    The terms "Kailasa," "us," or "we" refer to IGURU INNOVATIONS LLC, a software company that designed and built
+                    Kailasa, incorporated in California, and operating in San Francisco, CA.
                   </p>
                   <p className="mb-4">
-                    The term "device" refers to the device that is used to access the Services, including but not limited
-                    to computers, smartphones, and tablets.
+                    The term "device" refers to the device that is used to access the Services, including but not limited to
+                    computers, smartphones, and tablets.
                   </p>
                   <p className="mb-4">The term "you" refers to the user of the Services.</p>
                   <p className="mb-4">
-                    When you sign up for any of the Services or otherwise use or access them, you agree to be bound by
-                    these Terms and all applicable laws, rules, and regulations. By using the Services, you indicate that
-                    you accept these Terms and that you agree to abide by them. If you do not agree to these Terms,
-                    please refrain from using the services.
+                    When you sign up for any of the Services or otherwise use or access them, you agree to be bound by these Terms
+                    and all applicable laws, rules, and regulations. By using the Services, you indicate that you accept these Terms
+                    and that you agree to abide by them. If you do not agree to these Terms, please refrain from using the services.
                   </p>
                   <p className="mb-4">
-                    Our contact email address is <a href="mailto:support@kailasa.app" className="text-crypto-primary hover:underline">support@kailasa.app</a>.
-                    All correspondence to Kailasa, including any queries you may have regarding your use of the Services or
-                    these Terms, should be sent to this contact email address.
+                    Our contact email address is{" "}
+                    <a href="mailto:support@kailasa.app" className="text-crypto-primary hover:underline">
+                      support@kailasa.app
+                    </a>
+                    . All correspondence to Kailasa, including any queries you may have regarding your use of the Services or these
+                    Terms, should be sent to this contact email address.
                   </p>
                   <p className="mb-4 font-bold text-yellow-400">
-                    PLEASE NOTE THAT THESE TERMS CONTAIN AN ARBITRATION CLAUSE. EXCEPT FOR CERTAIN TYPES OF
-                    DISPUTES MENTIONED IN THE ARBITRATION CLAUSE, YOU AND KAILASA AGREE THAT DISPUTES RELATING TO THESE TERMS OR YOUR USE OF THE SERVICES WILL BE RESOLVED BY MANDATORY
-                    BINDING ARBITRATION, AND YOU AND KAILASA WAIVE ANY RIGHT TO PARTICIPATE IN A CLASS ACTION LAWSUIT OR CLASS-WIDE ARBITRATION.
+                    PLEASE NOTE THAT THESE TERMS CONTAIN AN ARBITRATION CLAUSE. EXCEPT FOR CERTAIN TYPES OF DISPUTES MENTIONED IN THE
+                    ARBITRATION CLAUSE, YOU AND KAILASA AGREE THAT DISPUTES RELATING TO THESE TERMS OR YOUR USE OF THE SERVICES WILL BE
+                    RESOLVED BY MANDATORY BINDING ARBITRATION, AND YOU AND KAILASA WAIVE ANY RIGHT TO PARTICIPATE IN A CLASS ACTION LAWSUIT
+                    OR CLASS-WIDE ARBITRATION.
                   </p>
                 </div>
 
-                <ol className="list-decimal list-inside space-y-8">
+                <ol className="list-decimal list-inside space-y-10">
                   <li id="services">
                     <span className="font-semibold text-xl">OUR SERVICES</span>
                     <p className="mt-2">Kailasa offers a personal chatbot service through a text and voice interface.</p>
@@ -607,13 +741,17 @@ export default function Terms() {
                 </ol>
               </div>
 
-              <div className="mt-12 text-center">
-                <button
-                  onClick={scrollToTop}
-                  className="bg-crypto-primary text-crypto-bg px-6 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors"
+              <div className="mt-14 flex justify-center">
+                <a
+                  href="#top"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTop();
+                  }}
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors text-sm font-semibold tracking-wider uppercase"
                 >
                   Go to Top ↑
-                </button>
+                </a>
               </div>
             </div>
           </div>

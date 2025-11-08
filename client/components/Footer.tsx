@@ -87,11 +87,11 @@ export default function Footer() {
   };
   return (
     <footer className="bg-crypto-bg border-t border-white/20">
-      <div className="max-w-[1300px] mx-auto px-12 py-20">
+      <div className="max-w-[1300px] mx-auto px-6 sm:px-8 lg:px-12 py-14 lg:py-20">
         {/* Top Section - Columns */}
-        <div className="flex flex-col lg:flex-row justify-between items-start mb-12 gap-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start mb-12 gap-10 lg:gap-12">
           {/* Left side - Logo and mission */}
-          <div className="flex flex-col gap-4 max-w-[486px]">
+          <div className="flex flex-col gap-4 w-full lg:max-w-[486px]">
             <a href="/">
               <Logo />
             </a>
@@ -102,8 +102,8 @@ export default function Footer() {
           </div>
 
           {/* Right side - Links */}
-          <div className="flex gap-20 flex-wrap">
-            <div className="flex flex-col gap-3">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap gap-8 sm:gap-10 lg:gap-20 w-full lg:w-auto">
+            <div className="flex flex-col gap-3 w-full sm:w-auto">
               <h3 className="text-xl font-medium mb-2">Links</h3>
               <ul className="flex flex-col gap-3">
                 <li><a href="/" className="text-base text-white/60 hover:text-white transition-colors">Home</a></li>
@@ -113,7 +113,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full sm:w-auto">
               <h3 className="text-xl font-medium mb-2">Important Links</h3>
               <ul className="flex flex-col gap-3">
                 <li><a href="/terms" className="text-base text-white/60 hover:text-white transition-colors">Terms & Conditions</a></li>
@@ -122,7 +122,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full sm:w-auto">
               <h3 className="text-xl font-medium mb-2">Help & Support</h3>
               <ul className="flex flex-col gap-3">
                 <li><a href="mailto:support@kailasa.app" className="text-base text-white/60 hover:text-white transition-colors">support@kailasa.app</a></li>
@@ -136,24 +136,24 @@ export default function Footer() {
         <div className="mb-12">
           <h3 className="text-xl font-medium mb-4">Subscribe to our newsletter</h3>
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
-            <div className="flex gap-2 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <input
                 type="text"
                 name="name"
                 placeholder="Enter your name"
                 value={newsletterData.name}
                 onChange={(e) => setNewsletterData({ ...newsletterData, name: e.target.value })}
-                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors"
+                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors w-full sm:w-60"
                 required
               />
-              <div className="w-px bg-white/20"></div>
+              <div className="hidden sm:block w-px bg-white/20"></div>
               <input
                 type="email"
                 name="email"
                 placeholder="Enter your email address here"
                 value={newsletterData.email}
                 onChange={(e) => setNewsletterData({ ...newsletterData, email: e.target.value })}
-                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors"
+                className="px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:border-crypto-primary transition-colors w-full sm:w-72"
                 required
               />
             </div>
@@ -179,11 +179,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-8 border-t border-white/20 flex justify-between items-center flex-wrap gap-4">
+        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="text-sm text-white">
             IGURU INNOVATIONS LLC © 2025. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <a
               href="https://youtube.com/@kailasa"
               target="_blank"
