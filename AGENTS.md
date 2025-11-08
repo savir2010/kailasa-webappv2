@@ -162,3 +162,30 @@ const data: MyRouteResponse = await response.json();
 - Production-ready with multiple deployment options
 - Comprehensive UI component library included
 - Type-safe API communication via shared interfaces
+
+### Environment-specific Commands
+
+The project now includes helper scripts to run development or build tasks against specific configuration files in `config/`.
+
+```bash
+# Development servers
+pnpm env:dev        # uses config/dev.json and starts Vite dev server
+pnpm env:staging    # uses config/staging.json and starts Vite dev server
+pnpm env:prod       # uses config/prod.json and starts Vite dev server
+
+# One-line aliases
+pnpm dev:env:dev
+pnpm dev:env:staging
+pnpm dev:env:prod
+
+# Builds
+pnpm build:client                # default production client build
+pnpm build:client:staging        # client build using staging config
+pnpm build:client:prod           # client build using prod config
+
+# Generic helper (accepts dev|staging|prod and optional --build)
+pnpm env:run <env> [--build]
+```
+
+Each command picks the associated JSON from `config/` and passes the right `--mode` flag to Vite, mirroring the old
+`npx gulp ... --env=` workflow.

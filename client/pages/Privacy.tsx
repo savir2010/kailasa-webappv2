@@ -14,79 +14,191 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-crypto-bg text-white overflow-x-hidden relative">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 z-0"
-        style={{ 
-          backgroundImage: 'url(/BG21_2.webp)',
-          backgroundAttachment: 'scroll',
-          backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: '100% auto'
+        style={{
+          backgroundImage: "url(/BG21_2.webp)",
+          backgroundAttachment: "scroll",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% auto",
         }}
       />
       <div className="relative z-10">
         <Header />
 
-        <section className="relative pt-32 pb-12 md:pb-18 px-4 sm:px-8 md:px-12 max-w-[1300px] mx-auto">
-          <div className="w-full bg-white/5 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10">
-            <h1 id="top" className="font-great-victorian text-[40px] md:text-[56px] font-medium mb-4">
-              Privacy Policy
-            </h1>
-            <p className="text-base md:text-lg text-white/80 mb-8">
-              Last updated: <strong>February 13, 2025</strong>
-            </p>
+        <section className="relative pt-32 pb-20 px-4 sm:px-8 md:px-12">
+          <div className="max-w-[1100px] mx-auto">
+            <button
+              onClick={scrollToTop}
+              className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-colors text-2xl font-semibold fixed bottom-8 right-8 z-30"
+              aria-label="Go to top"
+            >
+              ↑
+            </button>
 
-            <div className="prose prose-invert max-w-none">
-              <div className="mb-8">
-                <a href="#welcome" className="text-crypto-primary hover:text-crypto-primary/80 transition-colors text-lg font-medium">
-                  Welcome to Kailasa!
-                </a>
+            <div className="w-full bg-white/10 backdrop-blur-[18px] rounded-3xl border border-white/15 p-6 sm:p-10 md:p-12 shadow-[0_25px_60px_rgba(5,10,39,0.45)]">
+              <div className="flex flex-col gap-3">
+                <h1
+                  id="top"
+                  className="font-great-victorian text-[38px] sm:text-[46px] md:text-[56px] font-medium tracking-tight"
+                >
+                  Privacy Policy
+                </h1>
+                <p className="text-sm sm:text-base text-white/80 uppercase tracking-[0.18em]">
+                  Last updated: <span className="font-semibold text-white">February 13, 2025</span>
+                </p>
               </div>
 
-              <div className="mb-8">
-                <ol className="list-decimal list-inside space-y-2 text-white/90">
-                  <li><a href="#what-information" className="text-crypto-primary hover:underline">What information we collect</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#information" className="text-crypto-primary hover:underline">Information you provide</a></li>
-                      <li><a href="#information-we-collect" className="text-crypto-primary hover:underline">Information we collect automatically</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#how-we-use" className="text-crypto-primary hover:underline">How we use your information</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#use-of-your" className="text-crypto-primary hover:underline">Use of your information</a></li>
-                      <li><a href="#sensitive" className="text-crypto-primary hover:underline">Sensitive information</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#how-we-share" className="text-crypto-primary hover:underline">How we share your information</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#service-providers" className="text-crypto-primary hover:underline">Service providers</a></li>
-                      <li><a href="#professional-advisors" className="text-crypto-primary hover:underline">Professional advisors</a></li>
-                      <li><a href="#advertising-partners" className="text-crypto-primary hover:underline">Advertising partners</a></li>
-                      <li><a href="#authorities-and-others" className="text-crypto-primary hover:underline">Authorities and others</a></li>
-                      <li><a href="#business-transferees" className="text-crypto-primary hover:underline">Business transferees</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#how-we-secure" className="text-crypto-primary hover:underline">How we secure your information</a></li>
-                  <li><a href="#where-we-store" className="text-crypto-primary hover:underline">Where we store your information</a></li>
-                  <li><a href="#data-retention" className="text-crypto-primary hover:underline">Data Retention</a></li>
-                  <li><a href="#your-rights" className="text-crypto-primary hover:underline">Your rights and choices</a>
-                    <ol className="list-decimal list-inside ml-6 mt-2 space-y-1">
-                      <li><a href="#opt-out-of-marketing" className="text-crypto-primary hover:underline">Opt-out of marketing communications</a></li>
-                      <li><a href="#opt-out-of-selling" className="text-crypto-primary hover:underline">Opt out of selling personal information and sharing for targeted advertising</a></li>
-                      <li><a href="#limit-our-use" className="text-crypto-primary hover:underline">Limit our use of sensitive personal information</a></li>
-                      <li><a href="#personal-information" className="text-crypto-primary hover:underline">Personal information requests</a></li>
-                      <li><a href="#right-to-erasure" className="text-crypto-primary hover:underline">Right to erasure ('right to be forgotten')</a></li>
-                    </ol>
-                  </li>
-                  <li><a href="#use-of-kailasa" className="text-crypto-primary hover:underline">Use of Kailasa by minors</a></li>
-                  <li><a href="#privacy-policy" className="text-crypto-primary hover:underline">Changes to this Privacy Policy</a></li>
-                  <li><a href="#contact-us" className="text-crypto-primary hover:underline">Contact us</a></li>
-                </ol>
+              <div className="mt-8 border border-white/10 rounded-2xl bg-white/5">
+                <div className="px-6 sm:px-8 py-6 border-b border-white/10">
+                  <a
+                    href="#welcome"
+                    className="inline-flex items-center text-lg font-semibold text-crypto-primary hover:text-crypto-primary/80 transition-colors"
+                  >
+                    Welcome to Kailasa!
+                  </a>
+                </div>
+
+                <div className="px-6 sm:px-8 py-6">
+                  <ol className="list-decimal list-inside text-white/90 space-y-4 text-base sm:text-lg leading-relaxed">
+                    <li>
+                      <a href="#what-information" className="text-crypto-primary hover:underline">
+                        What information we collect
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#information" className="text-crypto-primary hover:underline">
+                            Information you provide
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#information-we-collect" className="text-crypto-primary hover:underline">
+                            Information we collect automatically
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#how-we-use" className="text-crypto-primary hover:underline">
+                        How we use your information
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#use-of-your" className="text-crypto-primary hover:underline">
+                            Use of your information
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#sensitive" className="text-crypto-primary hover:underline">
+                            Sensitive information
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#how-we-share" className="text-crypto-primary hover:underline">
+                        How we share your information
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#service-providers" className="text-crypto-primary hover:underline">
+                            Service providers
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#professional-advisors" className="text-crypto-primary hover:underline">
+                            Professional advisors
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#advertising-partners" className="text-crypto-primary hover:underline">
+                            Advertising partners
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#authorities-and-others" className="text-crypto-primary hover:underline">
+                            Authorities and others
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#business-transferees" className="text-crypto-primary hover:underline">
+                            Business transferees
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#how-we-secure" className="text-crypto-primary hover:underline">
+                        How we secure your information
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#where-we-store" className="text-crypto-primary hover:underline">
+                        Where we store your information
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#data-retention" className="text-crypto-primary hover:underline">
+                        Data Retention
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#your-rights" className="text-crypto-primary hover:underline">
+                        Your rights and choices
+                      </a>
+                      <ol className="list-decimal list-inside ml-5 sm:ml-8 mt-2 space-y-2 text-sm sm:text-base">
+                        <li>
+                          <a href="#opt-out-of-marketing" className="text-crypto-primary hover:underline">
+                            Opt-out of marketing communications
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#opt-out-of-selling" className="text-crypto-primary hover:underline">
+                            Opt out of selling personal information and sharing for targeted advertising
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#limit-our-use" className="text-crypto-primary hover:underline">
+                            Limit our use of sensitive personal information
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#personal-information" className="text-crypto-primary hover:underline">
+                            Personal information requests
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#right-to-erasure" className="text-crypto-primary hover:underline">
+                            Right to erasure (‘right to be forgotten’)
+                          </a>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <a href="#use-of-kailasa" className="text-crypto-primary hover:underline">
+                        Use of Kailasa by minors
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#privacy-policy" className="text-crypto-primary hover:underline">
+                        Changes to this Privacy Policy
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#contact-us" className="text-crypto-primary hover:underline">
+                        Contact us
+                      </a>
+                    </li>
+                  </ol>
+                </div>
               </div>
 
-              <div className="space-y-6 text-white/90 leading-relaxed">
+              <div className="space-y-10 sm:space-y-12 text-white/90 leading-relaxed text-base sm:text-lg mt-10">
                 <div id="welcome">
-                  <h2 className="font-great-victorian text-2xl md:text-3xl font-medium mb-4 mt-8">Welcome to Kailasa!</h2>
+                  <p className="text-2xl md:text-[28px] font-great-victorian font-medium text-white mb-4">
+                    Welcome to Kailasa!
+                  </p>
                   <p className="mb-4">
                     IGURU INNOVATIONS LLC ("Kailasa", "we", "us", and/or "our") operates the Kailasa mobile and web
                     applications, including Kailasa (the "Apps"), the informational website kailasa.app and its mirror
@@ -110,9 +222,9 @@ export default function Privacy() {
                   </p>
                 </div>
 
-                <ol className="list-decimal list-inside space-y-8">
+                <ol className="list-decimal list-inside space-y-10">
                   <li id="what-information">
-                    <span className="font-semibold text-xl">What information we collect</span>
+                    <span className="font-semibold text-xl text-white">What information we collect</span>
                     <ol className="list-decimal list-inside ml-6 mt-4 space-y-6">
                       <li id="information">
                         <span className="font-semibold">Information you provide</span>
@@ -296,13 +408,17 @@ export default function Privacy() {
                 </ol>
               </div>
 
-              <div className="mt-12 text-center">
-                <button
-                  onClick={scrollToTop}
-                  className="bg-crypto-primary text-crypto-bg px-6 py-3 rounded-xl font-bold hover:bg-crypto-primary/90 transition-colors"
+              <div className="mt-14 flex justify-center">
+                <a
+                  href="#top"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToTop();
+                  }}
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition-colors text-sm font-semibold tracking-wider uppercase"
                 >
                   Go to Top ↑
-                </button>
+                </a>
               </div>
             </div>
           </div>

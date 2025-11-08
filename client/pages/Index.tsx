@@ -46,14 +46,14 @@
           const timeout = setTimeout(() => {
             setDisplayedText(prev => prev + currentLine[currentCharIndex]);
             setCurrentCharIndex(prev => prev + 1);
-          }, 100);
+          }, 60);
           return () => clearTimeout(timeout);
         } else if (currentLineIndex < lines.length - 1) {
           const timeout = setTimeout(() => {
             setDisplayedText(prev => prev + '\n');
             setCurrentLineIndex(prev => prev + 1);
             setCurrentCharIndex(0);
-          }, 300);
+          }, 200);
           return () => clearTimeout(timeout);
         }
       }
@@ -118,9 +118,7 @@
             <motion.div className="w-full max-w-[588px]" {...fadeInUp}>
               <div className="flex flex-col gap-6 md:gap-10">
                 <div className="flex flex-col gap-3">
-                  <span className="inline-flex items-center justify-center px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-white/10 bg-crypto-primary-light text-crypto-primary text-base md:text-lg w-fit">
-                    Future of crypto trading
-                  </span>
+
                   <h1 className="font-great-victorian text-[40px] sm:text-[56px] md:text-[84px] leading-[120%] font-medium tracking-tight text-white">
                     <Typewriter lines={["Manage Your Life With Kailasa"]} />
                   </h1>
